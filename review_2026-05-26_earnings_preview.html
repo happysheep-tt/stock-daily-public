@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-05-26 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-05-26</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 11</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:9.1%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 11 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "01810HK", title_cn: "小米周二盘前财报，AIoT+汽车双引擎能否兑现高增长？", body_cn: "小米（01810HK）周二盘前发布财报，核心看点是手机高端化ASP提升进度与小米汽车SU7系列的毛利率改善幅度，两者共同决定集团能否从\"销量驱动\"切换为\"利润驱动\"叙事。最大争议点：汽车业务单季交付目标能否实现正毛利，以及AIoT设备出货量能否支撑高端生态溢价定价。若汽车业务毛利率首次转正且手机ASP突破前高，港股稀缺的\"硬科技+智能汽车\"估值溢价将获正式确认。小米正在从手机公司变成生态公司——这一步，财报能走稳吗？", title_en: "Xiaomi Pre-Market Earnings Tuesday: Can AIoT and EV Dual Engines Deliver High Growth?", body_en: "Xiaomi (01810.HK) reports before Tuesday's open, with key focus on smartphone premium ASP trajectory and gross margin improvement in the SU7 EV lineup — together determining whether the group can shift from a volume-driven to profit-driven narrative. The central debate: whether the auto segment can achieve positive gross margin within the quarter, and whether AIoT shipment volumes can sustain premium ecosystem pricing. A first-ever positive auto gross margin combined with a new high in smartphone ASP would formally validate the rare 'hard tech plus smart EV' valuation premium in Hong Kong markets. Can this earnings report confirm Xiaomi's transformation from handset maker to ecosystem platform?" },
+  { ticker: "MNSO", title_cn: "名创优品周二盘前财报，出海加速能否抵消国内压力？", body_cn: "名创优品（MNSO）周二盘前发布财报，市场最关注海外门店扩张速度（尤其是东南亚、北美）及单店模型复制效率，这是MNSO从\"中国折扣零售商\"向\"全球消费品牌\"重估的核心路径。核心风险：国内消费复苏节奏低于预期将拖累同店销售增速，IP联名产品热度是否可持续也是隐患。若海外收入占比首次超过40%且门店数量增长超市场预期，多头叙事将实质推进。名创的\"新十亿\"美元市场战略，这季能给出兑现信号吗？", title_en: "MNSO Pre-Market Earnings Tuesday: Can Overseas Expansion Offset Domestic Headwinds?", body_en: "Miniso (MNSO) reports before Tuesday's open, with markets focused on international store expansion — particularly in Southeast Asia and North America — and unit economics replication efficiency, the core pathway for re-rating MNSO from Chinese discount retailer to global consumer brand. Key risks include a slower-than-expected domestic consumption recovery weighing on same-store sales growth, and uncertainty over the staying power of IP collaboration products. An overseas revenue mix exceeding 40% for the first time alongside above-consensus store count growth would materially advance the bull thesis. Can this quarter deliver proof-of-concept for MNSO's 'new billion-dollar market' strategy?" },
+  { ticker: "PDD", title_cn: "拼多多周三盘前财报，Temu关税寒冬下还能交出惊喜吗？", body_cn: "拼多多（PDD）周三盘前发布财报，在美国终止中国电商\"最低价值\"豁免政策（De Minimis）的背景下，Temu北美业务的流量与利润率变化是本季最大变量。核心争议：Temu能否通过本土仓储模式有效对冲关税冲击，以及国内多多买菜和平台货币化率提升能否填补海外压力缺口。若Temu收入增速明显下滑但集团利润率反而改善，市场将重新评估其资本效率和战略灵活性。关税风暴中的最大受冲击者，这次能靠什么讲新故事？", title_en: "PDD Pre-Market Earnings Wednesday: Can It Still Surprise Amid Temu's Tariff Winter?", body_en: "Pinduoduo (PDD) reports before Wednesday's open, with Temu's North American traffic and margin dynamics the single biggest variable this quarter following the U.S. termination of the de minimis exemption for Chinese e-commerce shipments. The core debate centers on whether Temu can effectively offset tariff pressure through a local warehousing model, and whether domestic Duoduo Maicai and platform monetization rate improvements can bridge the gap from overseas headwinds. If Temu revenue growth decelerates sharply yet group-level margins improve, markets will reassess PDD's capital efficiency and strategic flexibility. As the most tariff-exposed name in the sector, what new narrative can PDD offer this time?" },
+  { ticker: "MRVL", title_cn: "Marvell周三盘后财报，AI定制芯片能接棒NVDA叙事吗？", body_cn: "Marvell Technology（MRVL）周三盘后发布财报，AI定制芯片（ASIC）收入规模与数据中心业务增长指引是本季焦点——这直接检验MRVL是否正在成为超大规模云厂商定制算力的核心供应商。核心争议：Google TPU、Amazon Trainium等定制芯片协议的实际采购速度，以及传统以太网和存储业务的周期复苏节奏。若ASIC收入季环比加速增长且管理层给出超共识的下季指引，MRVL将从\"NVDA替代品\"正式跨越为\"AI基础设施独立叙事\"。AI算力的第二战场，MRVL能站稳脚跟吗？", title_en: "Marvell Earnings Wednesday Post-Market: Can Custom AI Chips Inherit NVDA's Narrative?", body_en: "Marvell Technology (MRVL) reports after Wednesday's close, with custom AI ASIC revenue scale and data center business growth guidance the quarter's focal points — directly testing whether MRVL is cementing its role as a core supplier of custom compute for hyperscale cloud operators. Key debates include actual procurement pace under Google TPU and Amazon Trainium chip agreements, and the cyclical recovery trajectory of legacy Ethernet and storage businesses. Accelerating sequential ASIC revenue growth paired with above-consensus next-quarter guidance would elevate MRVL from 'NVDA alternative' to a standalone AI infrastructure narrative. Can MRVL hold its ground as the second front in the AI compute battle?" },
+  { ticker: "SNOW", title_cn: "Snowflake周三盘后财报，AI数据平台转型交出答卷了吗？", body_cn: "Snowflake（SNOW）周三盘后发布财报，产品收入增速与净收入留存率（NRR）是验证其AI数据云转型成色的核心指标，Cortex AI功能的付费渗透率将成为新叙事的量化锚点。最大风险：Databricks、Google BigQuery、AWS Redshift的持续竞争压力正在侵蚀SNOW的定价权，同时高估值对任何指引下调容错率极低。若产品收入增速重回30%以上且AI功能带动净新增ARR，估值修复空间将重新打开。SNOW的AI转型，是真实的业务飞轮，还是被迫的叙事追赶？", title_en: "Snowflake Earnings Wednesday Post-Market: Has Its AI Data Platform Transformation Delivered?", body_en: "Snowflake (SNOW) reports after Wednesday's close, with product revenue growth and net revenue retention rate (NRR) as the primary metrics validating its AI Data Cloud transition, while Cortex AI paid penetration will serve as the quantitative anchor for the new growth narrative. The biggest risk is sustained competitive pressure from Databricks, Google BigQuery, and AWS Redshift eroding SNOW's pricing power, compounded by a high valuation that leaves virtually no room for guidance cuts. A product revenue growth reacceleration above 30% alongside AI-driven net new ARR would reopen meaningful valuation upside. Is SNOW's AI transformation a genuine business flywheel, or merely a forced narrative pivot?" },
+  { ticker: "CRM", title_cn: "Salesforce周三盘后财报，Agentforce AI代理能撑起下一轮增长吗？", body_cn: "Salesforce（CRM）周三盘后发布财报，Agentforce AI代理平台的付费席位增长与合同价值是本季度最重要的新指标，直接决定CRM能否从\"传统CRM\"重估为\"企业AI平台\"。核心争议：Agentforce的客户采购行为是否已从试点阶段进入规模化部署，以及宏观软件支出放缓对大客户续约和新增ARR的实际影响。若Agentforce合同价值超市场预期且营业利润率持续扩张，CRM的重估逻辑将获支撑。企业AI代理的最大布局者，这季能把概念变成数字吗？", title_en: "Salesforce Earnings Wednesday Post-Market: Can Agentforce AI Agents Drive the Next Growth Cycle?", body_en: "Salesforce (CRM) reports after Wednesday's close, with Agentforce AI agent platform paid seat growth and contract value emerging as the most critical new metrics this quarter — directly determining whether CRM can be re-rated from legacy CRM vendor to enterprise AI platform. The core debate is whether Agentforce customer adoption has moved from pilot to scaled deployment, and the real impact of slowing macro software spend on large-account renewals and net new ARR. Agentforce contract value exceeding expectations alongside sustained operating margin expansion would underpin the re-rating thesis. Can the biggest enterprise AI agent bet this quarter turn concept into hard numbers?" },
+  { ticker: "HPQ", title_cn: "HP周三盘后财报，AI PC换机潮真的来了吗？", body_cn: "HP Inc.（HPQ）周三盘后发布财报，AI PC产品线的收入占比提升与商用PC复苏节奏是本季核心叙事，市场希望看到AI PC平均售价（ASP）拉升效果兑现。核心风险：全球PC市场整体需求仍处于弱周期，企业IT支出保守，AI PC高溢价能否被终端用户接受尚存争议。若AI PC收入占比显著提升且毛利率同步改善，换机周期主题将获有效验证；否则\"AI PC\"仅为营销标签的担忧将放大。AI PC叙事的第一批财务数据，HP能帮这个故事站稳吗？", title_en: "HP Earnings Wednesday Post-Market: Has the AI PC Upgrade Cycle Really Arrived?", body_en: "HP Inc. (HPQ) reports after Wednesday's close, with the revenue mix shift toward AI PC products and the pace of commercial PC recovery as the quarter's core narrative — markets want to see tangible ASP uplift from AI PC configurations materializing in the financials. Key risks include an overall PC market still in a soft demand cycle, conservative enterprise IT spending, and unresolved questions over whether end users will accept the AI PC price premium. A meaningful increase in AI PC revenue mix alongside margin improvement would validate the upgrade cycle thesis; otherwise, concerns that 'AI PC' remains a marketing label will intensify. As the first hard financial data on the AI PC narrative, can HP make this story credible?" },
+  { ticker: "COST", title_cn: "Costco周四盘后财报，会员经济护城河经得起关税冲击吗？", body_cn: "Costco（COST）周四盘后发布财报，会员费收入增长与续费率是其护城河最核心的量化指标，同店销售增速则验证\"关税避风港\"叙事是否有数据支撑。核心争议：进口商品占比较高的品类（电子、服饰）在关税压力下如何管控毛利率，以及会员价格提价后的用户留存表现。若会员续费率保持历史高位且同店销售增速超预期，COST作为\"防御+增长\"双属性标的的溢价将持续获认可。消费降级时代的赢家叙事，COST能给出硬数据了吗？", title_en: "Costco Earnings Thursday Post-Market: Can Its Membership Moat Withstand Tariff Pressure?", body_en: "Costco (COST) reports after Thursday's close, with membership fee revenue growth and renewal rates as the most critical quantitative measures of its competitive moat, while same-store sales growth will test whether the 'tariff safe haven' narrative has data to back it up. The key debate is how COST manages gross margins in high-import categories such as electronics and apparel under tariff pressure, and member retention following the recent fee price increase. Renewal rates holding at historical highs alongside above-consensus same-store sales growth would sustain COST's premium as a dual 'defensive plus growth' compounder. Can COST deliver the hard data to back the consumer trade-down winner narrative?" },
+  { ticker: "DELL", title_cn: "戴尔周四盘后财报，AI服务器订单能撑起AI基础设施叙事吗？", body_cn: "戴尔科技（DELL）周四盘后发布财报，AI服务器（PowerEdge + GB200 NVL机架）的积压订单消化速度与新订单增长是本季最关键指标，直接检验DELL作为NVIDIA下游最大分销商的AI红利兑现进度。核心争议：AI服务器的高增长能否完全抵消传统PC和企业IT硬件的周期性疲软，以及利润率结构是否会因AI服务器低毛利而承压。若AI相关收入占比超预期且订单积压创新高，DELL将从\"传统IT公司\"被重新定价为\"AI基础设施不可或缺的组件\"。AI算力需求如此旺盛，DELL的订单本子里藏着多大的惊喜？", title_en: "Dell Earnings Thursday Post-Market: Can AI Server Orders Sustain the AI Infrastructure Narrative?", body_en: "Dell Technologies (DELL) reports after Thursday's close, with AI server backlog conversion speed and new order growth — spanning PowerEdge and GB200 NVL rack configurations — as the quarter's most critical metrics, directly testing DELL's pace of monetizing its position as NVIDIA's largest downstream distribution partner. The central debate is whether AI server hypergrowth can fully offset cyclical weakness in traditional PC and enterprise IT hardware, and whether the margin structure faces pressure from the inherently thin margins of AI server products. AI-related revenue mix exceeding expectations alongside a record order backlog would re-price DELL from legacy IT company to indispensable AI infrastructure component. With AI compute demand this strong, how large is the upside hidden in DELL's order book?" },
+  { ticker: "XPEV", title_cn: "小鹏周四盘前财报，MONA系列能让毛利率翻身吗？", body_cn: "小鹏汽车（XPEV）周四盘前发布财报，MONA M03和P7+系列的单车毛利率改善是本季关键验证点——这是小鹏从\"烧钱扩规模\"向\"规模摊薄成本\"叙事切换的核心数据。争议在于：海外出口加速（尤其是欧洲市场）能否在关税壁垒加高的背景下继续推进，以及端到端自动驾驶技术进展能否为品牌溢价提供支撑。若车辆毛利率突破15%且季交付量维持增长，小鹏估值折价的核心逻辑将开始松动。小鹏说要做\"飞行汽车公司\"，但先把地面上的毛利率做正，投资者才会信？", title_en: "XPEV Pre-Market Earnings Thursday: Can the MONA Series Revive Gross Margins?", body_en: "XPeng (XPEV) reports before Thursday's open, with per-vehicle gross margin improvement from the MONA M03 and P7+ series as the pivotal validation point — the core data needed to confirm XPeng's shift from a cash-burning scale-up narrative to one of scale-driven cost dilution. Key debates include whether accelerating overseas exports, particularly into Europe, can continue against rising tariff barriers, and whether progress on end-to-end autonomous driving can support a brand premium. A vehicle gross margin breaking above 15% alongside sustained quarterly delivery growth would begin to loosen the structural discount embedded in XPEV's valuation. XPeng talks about becoming a flying car company — but will investors only believe it once ground-level margins turn profitable?" },
+  { ticker: "LI", title_cn: "理想汽车周四盘前财报，MEGA失速后能靠L系重回轨道吗？", body_cn: "理想汽车（LI）周四盘前发布财报，L6/L7/L8/L9系列的季度交付总量与单车毛利率走势是核心焦点，市场还将关注理想在纯电路线上的最新进展以及MEGA复苏信号。核心风险：中国豪华SUV市场竞争加剧（华为问界、比亚迪仰望），叠加增程式技术路线在政策层面的不确定性。若单季交付量重回同比正增长且整车毛利率维持在20%以上，理想的\"现金奶牛+成长期权\"双叙事将获延续。L系销量稳了，但MEGA的阴影什么时候才能散去？", title_en: "Li Auto Pre-Market Earnings Thursday: Can the L-Series Restore Momentum After MEGA Stumbled?", body_en: "Li Auto (LI) reports before Thursday's open, with quarterly delivery volumes across the L6/L7/L8/L9 lineup and per-vehicle gross margin trends as the core focus, while markets will also scrutinize the latest progress on Li Auto's pure-EV roadmap and any MEGA recovery signals. Key risks include intensifying competition in China's premium SUV segment from Huawei AITO and BYD Yangwang, compounded by policy-level uncertainty surrounding the extended-range EV technology pathway. A return to positive year-over-year delivery growth alongside vehicle gross margins holding above 20% would sustain the dual narrative of Li Auto as both a cash-generating compounder and a growth option. The L-Series has stabilized — but when will the shadow of MEGA finally lift?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
