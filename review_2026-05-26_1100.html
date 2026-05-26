@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-05-26 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-05-26</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 5</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 5 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "AMD", title_cn: "AMD砸$10B押注台湾AI，Next Nvidia是炒作还是正在实现？", body_cn: "Advanced Micro Devices（AMD）今日涨3.99%。AMD官方宣布将向台湾AI市场投资逾$100亿——市场将此定性为AMD从算力追随者升级为主动战略布局者的关键信号。《The 'Next Nvidia' Trade》叙事同步发酵，AMD与Arm Holdings、Marvell Technology被分析师并列点名为下一阶段主角。AMD是真正进入\"Next Nvidia\"轨道，还是估值已经跑在基本面前面了？", title_en: "AMD Bets $10B on Taiwan AI — Is the 'Next Nvidia' Trade Real?", body_en: "AMD rallied 3.99% after officially announcing over $10 billion in investment into Taiwan's AI market, a move analysts are calling a pivotal shift from AMD being a compute follower to a proactive strategic player. The 'Next Nvidia' narrative is gaining momentum, with analysts naming AMD alongside Arm Holdings and Marvell Technology as lead candidates for the next AI cycle. Is AMD truly entering 'Next Nvidia' territory, or has the valuation already outrun the fundamentals?" },
+  { ticker: "MU", title_cn: "MU夜盘涨4%，万亿俱乐部下一个是它？", body_cn: "Micron（MU）夜盘涨4.05%，多篇分析师报告密集落地。「MU能否今年加入万亿美元俱乐部」？同期另一报告点名一家借助Nvidia势头在2026年回报上首超Micron的芯片商——正面估值确认与新竞争压力并存。MU作为HBM高带宽内存的核心供应商，AI数据中心需求持续高增长是估值向上的核心引擎。万亿叙事是机构在提前卡位，还是等实盘验证再追更稳？", title_en: "MU Surges 4% After-Hours — Is a $1T Market Cap Next?", body_en: "Micron (MU) jumped 4.05% in after-hours trading as a wave of analyst reports hit simultaneously, with one directly raising the question of whether MU can join the trillion-dollar club this year. A separate report named a rival chipmaker — riding Nvidia's coattails — set to outperform Micron on returns in 2026, creating a mix of bullish valuation confirmation and emerging competitive pressure. As a core HBM supplier, MU's AI data center demand tailwind remains its primary valuation catalyst. Is the trillion-dollar narrative institutions front-running a position, or is it safer to wait for hard results before chasing?" },
+  { ticker: "TSLA", title_cn: "Tesla会是间接持有spacex的好选择吗？？", body_cn: "Tesla（TSLA）今日涨1.95%，催化来自SpaceX S-1深度解析全面发酵——Chamath发布$2万亿估值核心数学模型，同时多家媒体梳理S-1中最具决定意义的三组关键财务指标。SpaceX IPO定价将成为马斯克整个生态系统的估值锚，TSLA持有者实质上间接持有SpaceX的价值敞口，IPO正式定价后这部分隐性资产将首次被市场显性化定价。反向风险：SpaceX独立上市若吸引专项资金直接配置，TSLA作为\"SpaceX代理\"的稀缺性溢价将同步消散。Chamath算出$2万亿，IPO定价日你准备加TSLA还是等SpaceX直接开盘？", title_en: "Is Tesla the Best Way to Indirectly Own SpaceX??", body_en: "Tesla (TSLA) gained 1.95% as SpaceX S-1 analysis went viral — Chamath published a core mathematical model supporting a $2 trillion valuation, while multiple outlets highlighted three key financial metrics from the S-1. SpaceX's IPO pricing will serve as the valuation anchor for Musk's entire ecosystem, and TSLA holders effectively carry indirect SpaceX exposure — an embedded asset that will be explicitly priced by the market for the first time at IPO. Counter-risk: if SpaceX's independent listing draws dedicated capital allocation, TSLA's scarcity premium as a 'SpaceX proxy' will simultaneously evaporate. Chamath's math points to $2 trillion — on IPO pricing day, are you adding TSLA or waiting for SpaceX to open directly?" },
+  { ticker: "NVDA", title_cn: "谷歌公开AI自研芯片路线图，英伟达危机是真是假？", body_cn: "谷歌正将AI工作负载加速转移至自研Ironwood TPU，减少对外部NVDA GPU的依赖。对CoreWeave和Nebius威胁更为直接：两者商业模式完全依赖转售NVDA算力，谷歌自建标志着最重要需求方的自给化转向。短期内NVDA财报刚刚确认HBM需求旺盛，谷歌的转变是3-5年的结构性趋势而非季度催化，但若超大规模厂商\"去NVDA化\"成为行业主流，将重置AI算力股的长期估值框架。谷歌的TPU路线图能真正威胁NVDA护城河，还是NVDA的定制化能力仍无可替代？", title_en: "Google Unveils Custom AI Chip Roadmap — Is Nvidia's Moat Under Real Threat?", body_en: "Google is accelerating its shift of AI workloads onto its in-house Ironwood TPUs, reducing dependence on external Nvidia GPUs. The threat is most direct for CoreWeave and Nebius, whose business models rely entirely on reselling Nvidia compute capacity — Google's self-sufficiency pivot signals that the most critical demand source is turning inward. Near-term, Nvidia's latest earnings confirmed robust HBM demand, and Google's transition is a 3–5 year structural trend rather than a quarterly catalyst — but if hyperscaler 'de-Nvidia' strategies become the industry norm, the long-term valuation framework for AI compute stocks faces a fundamental reset. Can Google's TPU roadmap genuinely threaten Nvidia's moat, or does Nvidia's customization capability remain irreplaceable?" },
+  { ticker: "ASTS", title_cn: "SpaceX估值$2万亿，ASTS能借势多少？", body_cn: "AST SpaceMobile连续上涨，催化来自SpaceX IPO前景分析——市场正在理解SpaceX $2万亿估值的核心支撑是Starlink卫星互联网而非火箭发射，NASA ETF资金同步流入太空相关标的。ASTS作为卫星直连手机（direct-to-cell）赛道的纯标的，与Starlink在技术路线上形成竞争，但同时受益于整个卫星互联网叙事的估值重估。届时ASTS与Starlink的竞争关系将被市场重新定价——Starlink数据揭示的市场规模越大，对ASTS是利好还是利空？", title_en: "SpaceX Valued at $2T — How Much Can ASTS Ride the Wave?", body_en: "AST SpaceMobile posted consecutive gains, driven by SpaceX IPO outlook analysis revealing that the $2 trillion valuation is anchored by Starlink satellite internet — not rocket launches — prompting parallel capital inflows into space-related names via NASA ETFs. As the pure-play in the direct-to-cell satellite connectivity space, ASTS competes with Starlink on technology but simultaneously benefits from the broader satellite internet valuation re-rating. Once SpaceX lists, the competitive dynamic between ASTS and Starlink will be repriced by the market — the larger the addressable market Starlink's data reveals, is that a tailwind or a headwind for ASTS?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
