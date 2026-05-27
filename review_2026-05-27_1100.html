@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-05-27 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-05-27</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 6</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:16.7%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 6 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "MU", title_cn: "MU暴涨近20%，1万亿后该止盈还是继续看好？", body_cn: "Micron今日暴涨19.29%。AI基础设施公司IREN当日宣布斥资$16亿从Dell采购Nvidia Blackwell系统，单笔采购规模罕见，直接验证AI算力资本支出加速而非放缩，MU作为HBM高带宽内存核心供应商需求可见度大幅提升。Roundhill内存ETF（DRAM）同日被称为\"史上增长最快ETF\"，机构资金用脚投票押注AI内存超级周期进入加速阶段；夜盘进一步涨至$952。突破1万亿后已透支短期上行空间？是否该take profits？", title_en: "MU Surges Nearly 20% Past $1T — Time to Take Profits?", body_en: "Micron surged 19.29% after AI infrastructure firm IREN announced a $1.6B purchase of Nvidia Blackwell systems from Dell, one of the largest single AI compute orders on record, sharply boosting demand visibility for Micron as a core HBM supplier. The Roundhill Memory ETF (DRAM) was dubbed the 'fastest-growing ETF in history' the same day, signaling institutional conviction in an AI memory supercycle. MU extended gains to $952 in after-hours trading. Has the $1T milestone already priced in near-term upside — is it time to take profits?" },
+  { ticker: "AMD", title_cn: "AMD突破$500，Next Nvidia叙事还有多少补涨空间？", body_cn: "AMD今日续涨7.78%，昨日$10B台湾AI投资公告的机构共识持续发酵——分析师将AMD与Arm Holdings、Marvell Technology并列为\"Next Nvidia Trade\"核心受益者，两日合计涨幅超12%，AMD已站上$500关口。整体芯片板块在IREN $16亿Blackwell采购确认AI资本支出后集体走强，AMD是结构性重估的核心受益者之一。$500之上的AMD还值得追吗？", title_en: "AMD Breaks $500 — How Much More Upside in the 'Next Nvidia' Trade?", body_en: "AMD rose 7.78%, extending gains for a two-day rally exceeding 12% as institutional consensus around its $10B Taiwan AI investment announcement continued to build. Analysts have grouped AMD alongside Arm Holdings and Marvell Technology as core beneficiaries of the 'Next Nvidia Trade,' with AMD now firmly above the $500 level. The broader chip sector rallied after IREN's $1.6B Blackwell order confirmed accelerating AI capex. Is AMD still worth chasing above $500?" },
+  { ticker: "SNDK", title_cn: "SNDK继续大涨，Tepper最新持仓还在押注内存？", body_cn: "SanDisk（SNDK）今日再涨7.50%，David Tepper Appaloosa基金Q1持仓更新披露——有媒体同日报道持有SNDK的投资者一年内从$25K涨至逾$113万，\"内存造富效应\"叙事全面引爆市场情绪。SNDK年内涨幅已逾600%，高位仍获顶级宏观对冲基金持仓背书，叠加AI NAND/HBM需求持续高景气，短期换手压力被追涨动力压制。夜盘续涨至$1,638。Tepper Q1是增仓还是减仓是关键，高位坚守意味着他认为SNDK仍未到顶，现在跟还是不跟？", title_en: "SNDK Surges Again — Is Tepper Still Betting Big on Memory?", body_en: "SanDisk (SNDK) gained another 7.50% as David Tepper's Appaloosa fund disclosed its Q1 holdings, with media reports the same day highlighting one investor who turned $25K into over $1.13M in SNDK within a year, igniting 'memory wealth effect' sentiment across markets. SNDK is up over 600% year-to-date, with top macro hedge fund backing at elevated levels reinforcing the AI NAND/HBM demand thesis. Shares extended to $1,638 after hours. Whether Tepper added or trimmed in Q1 is the key question — his continued conviction implies SNDK hasn't peaked, but should investors follow at these levels?" },
+  { ticker: "ASTS", title_cn: "NASA月球基地+SpaceX IPO双催化，太空股全面起飞了？", body_cn: "太空板块今日全面爆发：RDW暴涨26%、ASTS涨13%、RKLB涨5.5%，双重催化来自NASA月球基地事件推进叠加SpaceX IPO进程加速。RDW作为在轨制造/太空基础设施商是NASA采购最直接受益方；ASTS以卫星直连手机赛道受益整体估值重估；RKLB则被点名其太空太阳能臂是\"为马斯克太空能源繁荣做好准备的隐藏武器\"。SpaceX正式上市后，太空赛道资金将如何在三者之间重新分配，哪个标的能独立支撑当前估值？", title_en: "NASA Moon Base + SpaceX IPO Dual Catalysts — Has Space Sector Lifted Off?", body_en: "Space stocks surged broadly: RDW +26%, ASTS +13%, RKLB +5.5%, driven by dual catalysts of NASA lunar base program developments and accelerating SpaceX IPO momentum. RDW, as an in-orbit manufacturing and space infrastructure provider, is the most direct NASA procurement beneficiary; ASTS gains reflect broader sector valuation re-rating via its satellite-direct-to-mobile technology; RKLB was highlighted for its space solar power capability as a 'hidden weapon' for Musk's space energy ambitions. Once SpaceX officially lists, how will capital reallocate among the three — and which name can sustain its current valuation independently?" },
+  { ticker: "NOK", title_cn: "NOK再创52周新高，AI网络基础设施叙事走到哪一步了？", body_cn: "Nokia（NOK）今日涨6.40%再度刷新52周新高，Benzinga同日直接发文「What's Driving The Action」——Nvidia $19亿持仓披露后AI网络基础设施叙事持续发酵，机构资金对NOK\"被低估的AI数据中心基础设施供应商\"定性认同度持续上升。NOK传统电信估值折价与AI数据中心光网络/IP路由实际市场份额之间的重估还未结束，夜盘续涨至$17。Nvidia背书+52周新高，NOK的重估行情是才开始，还是短期已有超买风险？", title_en: "NOK Hits New 52-Week High — How Far Has the AI Network Infrastructure Re-Rating Gone?", body_en: "Nokia (NOK) rose 6.40% to a fresh 52-week high as the AI network infrastructure narrative continued to gain traction following disclosure of Nvidia's $1.9B stake, with institutional consensus increasingly framing NOK as an 'undervalued AI data center infrastructure supplier.' The valuation gap between NOK's legacy telecom discount and its actual market share in AI data center optical networking and IP routing remains far from closed; shares extended to $17 in after-hours trading. With Nvidia's endorsement and a new 52-week high, is NOK's re-rating just beginning — or does the move already carry short-term overbought risk?" },
+  { ticker: "QQQ", title_cn: "纳斯达克100首破3万点，大盘新高之后怎么交易？", body_cn: "纳斯达克100指数昨日首次突破30,000点历史整数关口，由Micron +18%领涨驱动这一里程碑——自2022年底AI浪潮启动以来不到三年完成翻倍。S&P 500同步创历史新高，Tom Lee同日宣布\"Mag-7熊市正式结束\"，AI芯片五日连涨是大盘突破的直接驱动力。纳指首破3万点，这是AI牛市中场的加速，还是需要警惕历史整数关口的反转风险？", title_en: "Nasdaq 100 Breaks 30,000 for First Time — How Do You Trade After New Highs?", body_en: "The Nasdaq 100 breached the 30,000 milestone for the first time, driven by Micron's 18% surge, completing a doubling in under three years since the AI wave began in late 2022. The S&P 500 simultaneously hit an all-time high, with Tom Lee declaring the 'Mag-7 bear market officially over' as AI chips posted five consecutive days of gains as the primary driver of the breakout. Does the Nasdaq's first close above 30,000 mark a mid-cycle acceleration in the AI bull market — or is a reversal at this historic round-number level a risk worth watching?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
