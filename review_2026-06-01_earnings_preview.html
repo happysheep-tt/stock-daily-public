@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-06-01 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-06-01</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 5</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 5 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "HPE", title_cn: "HPE暴涨28%，2018年来最大财报beat，重新定价还能追吗？", body_cn: "慧与（HPE）周一盘后财报炸裂：营收$106.8亿（同比+40%）远超$97.7亿预期，EPS 0.79美元几乎是0.53美元共识的1.5倍，CNBC称这是2018年以来最大单次财报beat。Juniper整合推动网络业务营收暴增148%，叠加AI服务器需求强劲，公司同步上调FY26/FY27指引，并把长期目标整整提前两年（预计今年就达成原定2028年目标），盘后股价飙涨28%。唯一隐忧是供应链仍受限。接棒戴尔之后，被彻底重定价的HPE你会追吗？", title_en: "HPE Surges 28% on Biggest Earnings Beat Since 2018 — Still Worth Chasing?", body_en: "Hewlett Packard Enterprise delivered a blowout quarter after Monday's close: revenue of $10.68B (+40% YoY) crushed the $9.77B consensus, while EPS of $0.79 came in nearly 1.5x the $0.53 estimate — CNBC called it the largest single earnings beat since 2018. Networking revenue surged 148% on Juniper integration, AI server demand remained robust, and management raised FY26/FY27 guidance, pulling its original 2028 long-term targets forward by two full years. Supply chain constraints remain the sole overhang. After taking the baton from Dell, would you chase HPE at its newly re-rated valuation?" },
+  { ticker: "03690HK", title_cn: "美团Q1亏损收窄、股价大涨，能否突破100港元？", body_cn: "美团Q1营收910亿元人民币（同比+5.6%），净亏损收窄至约65亿元——这是外卖价格战下连续第三个亏损季，但环比已明显改善。即时零售（闪购）与海外Keeta保持强劲增长，AI整合与运营效率提升，补贴大战出现降温迹象，机构维持增持评级、目标价约111港元。股价应声大涨7.48%，但年内仍累跌近39%、仍处52周低位区。亏损拐点初现，价格战烧钱见顶，这个位置的美团是机会还是陷阱？", title_en: "Meituan Q1 Losses Narrow, Shares Jump — Can It Break HK$100?", body_en: "Meituan posted Q1 revenue of RMB 91.0B (+5.6% YoY), with net loss narrowing to approximately RMB 6.5B — its third consecutive loss quarter amid the food delivery price war, though sequential improvement was notable. Instant retail (Shangou) and overseas Keeta maintained strong growth, AI integration and operational efficiency improved, and subsidy intensity showed signs of cooling; institutional targets sit around HK$111 with Buy ratings intact. Shares jumped 7.48%, yet the stock remains down nearly 39% year-to-date near 52-week lows. With a potential loss inflection emerging and subsidy burn possibly peaking, is Meituan at this level an opportunity or a trap?" },
+  { ticker: "AVGO", title_cn: "博通明日财报：AI芯片狂潮能否继续狂欢？", body_cn: "Broadcom（AVGO）周三盘后发布财报，正值英伟达Computex、内存抛物线行情点燃整个AI芯片板块的高潮时刻。本季最大看点是AI定制芯片（ASIC/XPU）收入与超大规模云客户订单能见度，以及VMware软件整合后的利润率兑现。市场共识聚焦其能否给出超预期的AI收入指引，坐实\"除NVIDIA外最大AI算力受益者\"。最大争议在于当前估值已price in多少乐观预期、以及定制芯片客户集中度风险。AI ASIC的第二增长曲线，博通这季能用数字证明吗？", title_en: "Broadcom Reports Tomorrow: Can the AI Chip Party Keep Rolling?", body_en: "Broadcom (AVGO) releases earnings Wednesday after the close, at the peak of AI chip sector euphoria ignited by Nvidia's Computex announcements and the parabolic memory trade. Key focal points are AI custom chip (ASIC/XPU) revenue, hyperscaler order visibility, and margin realization from VMware software integration. The market consensus hinges on whether Broadcom can deliver above-consensus AI revenue guidance, cementing its status as the largest AI compute beneficiary outside NVIDIA. The central debate remains how much optimism is already priced in and the concentration risk among custom chip customers. Can Broadcom use this quarter's numbers to prove its AI ASIC second growth curve?" },
+  { ticker: "CRWD", title_cn: "CrowdStrike与Palo Alto，AI安全叙事会是下一个机会吗？", body_cn: "本周网络安全两大龙头集中发财报——Palo Alto（PANW）周二盘后、CrowdStrike（CRWD）周三盘后。共同看点是\"平台化\"（platformization）战略的客户合并进度，以及AI驱动的安全自动化（Agentic SOC）能否转化为ARR加速。CRWD还需验证去年系统中断事件后的客户留存与净新增ARR修复，PANW则看Cortex/XSIAM的交叉销售。两家估值都不便宜，AI安全是真需求还是又一个叙事？你更看好哪一个？", title_en: "CrowdStrike vs. Palo Alto: Is AI Security the Next Big Opportunity?", body_en: "Cybersecurity's two giants report in tandem this week — Palo Alto Networks (PANW) after Tuesday's close, CrowdStrike (CRWD) after Wednesday's. The shared focus is platformization strategy adoption and whether AI-driven security automation (Agentic SOC) can translate into ARR acceleration. CRWD must also demonstrate customer retention and net new ARR recovery following last year's system outage, while PANW faces scrutiny on Cortex/XSIAM cross-sell execution. Neither stock is cheaply valued. Is AI security a genuine demand driver or just another narrative — and which name do you favor?" },
+  { ticker: "LULU", title_cn: "Lululemon周四财报：高端消费降温，何时触底？", body_cn: "Lululemon（LULU）周四盘后发布财报，核心看点是北美同店销售能否止跌企稳，以及中国市场的高速增长能否继续对冲本土疲软。市场最大担忧是高端运动服饰在消费降级与关税成本双重压力下的毛利率与库存健康度。管理层对全年指引的态度，将决定市场对\"高端消费韧性\"的定价。中国能否成为Lululemon的第二增长极，这季见分晓？股价已连续三年下跌，何时会触底？", title_en: "Lululemon Reports Thursday Amid Premium Slowdown — When Does It Bottom?", body_en: "Lululemon (LULU) reports Thursday after the close, with investors focused on whether North American comparable sales can stabilize and whether China's robust growth can continue to offset domestic weakness. The core concern is gross margin and inventory health under the twin pressures of consumer trade-down and tariff costs weighing on the premium activewear segment. Management's full-year guidance tone will set the market's pricing of 'premium consumer resilience.' Can China become Lululemon's second growth engine — and with shares down three consecutive years, when does the stock finally bottom?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
