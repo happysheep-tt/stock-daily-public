@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-01 AM</title>
+<title>Topics Review — 2026-06-03 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-01</div>
+      <div class="date-label">2026-06-03</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 5</div>
+      <div class="progress-text" id="progressText">1 / 4</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 5 topics uploaded
+    ✅ All done! 4 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,11 +165,10 @@
 </div>
 <script>
 const topics = [
-  { ticker: "HPE", title_cn: "HPE暴涨28%，2018年来最大财报beat，重新定价还能追吗？", body_cn: "慧与（HPE）周一盘后财报炸裂：营收$106.8亿（同比+40%）远超$97.7亿预期，EPS 0.79美元几乎是0.53美元共识的1.5倍，CNBC称这是2018年以来最大单次财报beat。Juniper整合推动网络业务营收暴增148%，叠加AI服务器需求强劲，公司同步上调FY26/FY27指引，并把长期目标整整提前两年（预计今年就达成原定2028年目标），盘后股价飙涨28%。唯一隐忧是供应链仍受限。接棒戴尔之后，被彻底重定价的HPE你会追吗？", title_en: "HPE Surges 28% on Biggest Earnings Beat Since 2018 — Still Worth Chasing?", body_en: "Hewlett Packard Enterprise delivered a blowout quarter after Monday's close: revenue of $10.68B (+40% YoY) crushed the $9.77B consensus, while EPS of $0.79 came in nearly 1.5x the $0.53 estimate — CNBC called it the largest single earnings beat since 2018. Networking revenue surged 148% on Juniper integration, AI server demand remained robust, and management raised FY26/FY27 guidance, pulling its original 2028 long-term targets forward by two full years. Supply chain constraints remain the sole overhang. After taking the baton from Dell, would you chase HPE at its newly re-rated valuation?" },
-  { ticker: "03690HK", title_cn: "美团Q1亏损收窄、股价大涨，能否突破100港元？", body_cn: "美团Q1营收910亿元人民币（同比+5.6%），净亏损收窄至约65亿元——这是外卖价格战下连续第三个亏损季，但环比已明显改善。即时零售（闪购）与海外Keeta保持强劲增长，AI整合与运营效率提升，补贴大战出现降温迹象，机构维持增持评级、目标价约111港元。股价应声大涨7.48%，但年内仍累跌近39%、仍处52周低位区。亏损拐点初现，价格战烧钱见顶，这个位置的美团是机会还是陷阱？", title_en: "Meituan Q1 Losses Narrow, Shares Jump — Can It Break HK$100?", body_en: "Meituan posted Q1 revenue of RMB 91.0B (+5.6% YoY), with net loss narrowing to approximately RMB 6.5B — its third consecutive loss quarter amid the food delivery price war, though sequential improvement was notable. Instant retail (Shangou) and overseas Keeta maintained strong growth, AI integration and operational efficiency improved, and subsidy intensity showed signs of cooling; institutional targets sit around HK$111 with Buy ratings intact. Shares jumped 7.48%, yet the stock remains down nearly 39% year-to-date near 52-week lows. With a potential loss inflection emerging and subsidy burn possibly peaking, is Meituan at this level an opportunity or a trap?" },
-  { ticker: "AVGO", title_cn: "博通明日财报：AI芯片狂潮能否继续狂欢？", body_cn: "Broadcom（AVGO）周三盘后发布财报，正值英伟达Computex、内存抛物线行情点燃整个AI芯片板块的高潮时刻。本季最大看点是AI定制芯片（ASIC/XPU）收入与超大规模云客户订单能见度，以及VMware软件整合后的利润率兑现。市场共识聚焦其能否给出超预期的AI收入指引，坐实\"除NVIDIA外最大AI算力受益者\"。最大争议在于当前估值已price in多少乐观预期、以及定制芯片客户集中度风险。AI ASIC的第二增长曲线，博通这季能用数字证明吗？", title_en: "Broadcom Reports Tomorrow: Can the AI Chip Party Keep Rolling?", body_en: "Broadcom (AVGO) releases earnings Wednesday after the close, at the peak of AI chip sector euphoria ignited by Nvidia's Computex announcements and the parabolic memory trade. Key focal points are AI custom chip (ASIC/XPU) revenue, hyperscaler order visibility, and margin realization from VMware software integration. The market consensus hinges on whether Broadcom can deliver above-consensus AI revenue guidance, cementing its status as the largest AI compute beneficiary outside NVIDIA. The central debate remains how much optimism is already priced in and the concentration risk among custom chip customers. Can Broadcom use this quarter's numbers to prove its AI ASIC second growth curve?" },
-  { ticker: "CRWD", title_cn: "CrowdStrike与Palo Alto，AI安全叙事会是下一个机会吗？", body_cn: "本周网络安全两大龙头集中发财报——Palo Alto（PANW）周二盘后、CrowdStrike（CRWD）周三盘后。共同看点是\"平台化\"（platformization）战略的客户合并进度，以及AI驱动的安全自动化（Agentic SOC）能否转化为ARR加速。CRWD还需验证去年系统中断事件后的客户留存与净新增ARR修复，PANW则看Cortex/XSIAM的交叉销售。两家估值都不便宜，AI安全是真需求还是又一个叙事？你更看好哪一个？", title_en: "CrowdStrike vs. Palo Alto: Is AI Security the Next Big Opportunity?", body_en: "Cybersecurity's two giants report in tandem this week — Palo Alto Networks (PANW) after Tuesday's close, CrowdStrike (CRWD) after Wednesday's. The shared focus is platformization strategy adoption and whether AI-driven security automation (Agentic SOC) can translate into ARR acceleration. CRWD must also demonstrate customer retention and net new ARR recovery following last year's system outage, while PANW faces scrutiny on Cortex/XSIAM cross-sell execution. Neither stock is cheaply valued. Is AI security a genuine demand driver or just another narrative — and which name do you favor?" },
-  { ticker: "LULU", title_cn: "Lululemon周四财报：高端消费降温，何时触底？", body_cn: "Lululemon（LULU）周四盘后发布财报，核心看点是北美同店销售能否止跌企稳，以及中国市场的高速增长能否继续对冲本土疲软。市场最大担忧是高端运动服饰在消费降级与关税成本双重压力下的毛利率与库存健康度。管理层对全年指引的态度，将决定市场对\"高端消费韧性\"的定价。中国能否成为Lululemon的第二增长极，这季见分晓？股价已连续三年下跌，何时会触底？", title_en: "Lululemon Reports Thursday Amid Premium Slowdown — When Does It Bottom?", body_en: "Lululemon (LULU) reports Thursday after the close, with investors focused on whether North American comparable sales can stabilize and whether China's robust growth can continue to offset domestic weakness. The core concern is gross margin and inventory health under the twin pressures of consumer trade-down and tariff costs weighing on the premium activewear segment. Management's full-year guidance tone will set the market's pricing of 'premium consumer resilience.' Can China become Lululemon's second growth engine — and with shares down three consecutive years, when does the stock finally bottom?" },
+  { ticker: "MRVL", title_cn: "Marvell暴涨33，Jensen看好，你会押注万亿吗？", body_cn: "Marvell今日暴涨32.52%、再创历史新高。黄仁勋在和迈威尔科技CEO同台时候直接表示：迈威尔就是下一家万亿美元公司。AI定制芯片（ASIC/XPU）的\"万亿美元潜力\"叙事彻底引爆，市场将其认定为超大规模云厂商自研算力的核心供应商。同一天博通（AVGO）也刷新纪录高位，\"英伟达、谷歌、Marvell\"被并列点名为定制硅赢家。定制芯片的第二战场刚打响，MRVL你会追高，还是等回调？", title_en: "Marvell Surges 33% as Jensen Huang Calls It Next Trillion-Dollar Company — Will You Bet on MRVL?", body_en: "Marvell Technology (MRVL) surged 32.52% to a new all-time high after Nvidia CEO Jensen Huang, appearing alongside Marvell's CEO, declared the chipmaker would become the next trillion-dollar company. The endorsement ignited the AI custom silicon (ASIC/XPU) narrative, cementing Marvell's status as a key supplier to hyperscale cloud operators building proprietary compute. Broadcom (AVGO) also hit a record high the same day, with Nvidia, Google, and Marvell jointly named as custom silicon winners. Will you chase MRVL at these levels, or wait for a pullback?" },
+  { ticker: "GOOG", title_cn: "谷歌增发$800亿投AI，350以下会是上车机会吗？", body_cn: "Alphabet今日下跌3.81%，因计划增发高达$800亿美元股票为AI野心\"输血\"。一边是AI资本开支进入万亿级军备竞赛、不计成本抢算力，一边是用增发股票而非自由现金流买单，市场开始重新权衡\"AI投入\"与\"股东回报\"的天平。在谷歌大涨之后，许多投资者想上车但又不敢，这次回调会持续多久呢？多少价位以下你会上车？", title_en: "Alphabet Drops 3.8% on $80B Stock Issuance for AI — Is Sub-$350 a Buying Opportunity?", body_en: "Alphabet fell 3.81% after announcing plans to issue up to $80 billion in new shares to fund its AI ambitions. The move puts the market's spotlight on a growing tension: hyperscalers are racing to secure compute at any cost, yet Alphabet is tapping equity dilution rather than free cash flow to finance the push, prompting investors to reassess the balance between AI spending and shareholder returns. After Alphabet's recent rally left many on the sidelines, how far does this pullback need to go before you'd step in?" },
+  { ticker: "PLTR", title_cn: "AI软件集体回吐，Palantir跌5%，saas股票还能买吗？", body_cn: "在半导体与AI芯片狂欢的同时，AI软件今日集体回吐：Palantir（PLTR）跌5.28%、ServiceNow跌6.04%，多只SaaS名字同步走弱。有分析直指PLTR当前$3690亿估值需要\"史无前例的联邦市场份额\"才撑得住，高估值担忧重新主导情绪。这更像资金从拥挤的软件板块再度轮动回硬件/半导体的迹象，而非基本面恶化。周一刚领涨、今天就被砸，AI软件这波回调，你会逢低捡，还是先躲进半导体？", title_en: "AI Software Stocks Retreat — Palantir Drops 5%, Are SaaS Names Still Buyable?", body_en: "While semiconductors and AI chips celebrated, AI software names sold off sharply: Palantir (PLTR) fell 5.28% and ServiceNow dropped 6.04%, with multiple SaaS stocks moving in tandem. Analysts flagged that PLTR's current $369 billion valuation requires an \"unprecedented share of the federal market\" to justify, reigniting stretched-valuation concerns. The move looks more like a rotation from crowded software back into hardware and semiconductors than any fundamental deterioration. After leading Monday's gains and getting hit today, will you buy the AI software dip — or rotate into semis?" },
+  { ticker: "LITE", title_cn: "Lumentum飙涨14%，CPO会是下一个内存概念吗？", body_cn: "Lumentum（LITE）今日大涨13.72%、站上$1000，AI数据中心对高速光互联的需求爆发，带动光通信/光模块板块集体狂欢，Coherent（COHR）同步创新高。随着GB200/Vera Rubin等机架级算力部署提速，光模块成为继算力、内存之后被重新定价的AI基建\"卖铲人\"环节。但光模块历来是高波动周期品种，估值快速透支后回撤也猛。AI光互联这条新主线，你认为是结构性机会，还是又一轮炒作？", title_en: "Lumentum Jumps 14% on AI Optical Demand — Is CPO the Next Memory Trade?", body_en: "Lumentum (LITE) surged 13.72%, crossing $100, as exploding demand for high-speed optical interconnects in AI data centers drove a broad rally across optical components, with Coherent (COHR) also hitting a new all-time high. As rack-scale compute deployments like GB200 and Vera Rubin accelerate, optical modules are being repriced as the next AI infrastructure \"picks-and-shovels\" play after compute and memory. Optical stocks are historically high-volatility cyclicals prone to sharp drawdowns once valuations overshoot. Do you see AI optical interconnects as a structural opportunity — or just the latest round of hype?" },
 ];
 let current = 0;
 
