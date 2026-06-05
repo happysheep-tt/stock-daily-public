@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-04 AM</title>
+<title>Topics Review — 2026-06-05 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-04</div>
+      <div class="date-label">2026-06-05</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 6</div>
+      <div class="progress-text" id="progressText">1 / 4</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:16.7%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 6 topics uploaded
+    ✅ All done! 4 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,12 +165,10 @@
 </div>
 <script>
 const topics = [
-  { ticker: "NVDA", title_cn: "英伟达回吐大会涨幅，跌到多少是上车机会？", body_cn: "英伟达今日跌3.62%，在博通财报\"利好出尽\"暴跌与中东risk-off的双重压力下，AI芯片板块集体回调，连龙头也未能幸免。但台积电CEO重申AI需求\"毫无降温迹象\"，BofA也重置了对NVDA的预期，长期算力叙事并未动摇。AI龙头回调，你会逢跌上车，还是等中东与财报情绪消化完再说？", title_en: "Nvidia Surrenders GTC Gains — Where's the Entry Point?", body_en: "Nvidia fell 3.62% Wednesday, pressured by Broadcom's post-earnings selloff and Middle East-driven risk-off sentiment, dragging the AI chip sector into a broad pullback. TSMC's CEO reiterated AI demand shows \"no signs of cooling,\" while BofA recalibrated its NVDA outlook — leaving the long-term compute narrative intact. Would you buy this dip, or wait for geopolitical and earnings sentiment to clear first?" },
-  { ticker: "AVGO", title_cn: "博通暴跌，AI收入指引逊色,会跌破400美元吗？？", body_cn: "博通Q2财报beat、AI收入同比翻倍以上，但AI收入指引逊色。盘后股价跌12.57%（。此前股价已冲至历史新高、把强劲预期提前透支，财报兑现反成获利了结的契机。定制ASIC与VMware软件的长期叙事并未改变，只是短期估值跑得太前。AI芯片龙头财报后被错杀，还是估值见顶的信号？你会逢跌买，还是等情绪消化？这次是否会跌破400美元？", title_en: "Broadcom Plunges on Soft AI Guidance — Will It Break $400?", body_en: "Broadcom's Q2 results beat estimates with AI revenue more than doubling year-over-year, but forward AI revenue guidance disappointed, sending shares down 12.57% after hours. The stock had already surged to record highs, pricing in outsized expectations — leaving earnings as a catalyst for profit-taking rather than a rally. The long-term custom ASIC and VMware software thesis remains intact, but near-term valuation had run far ahead. Is this an overreaction worth buying, or a peak-valuation signal — and will AVGO break below $400?" },
-  { ticker: "CRWD", title_cn: "网络安全双杀：CrowdStrike跌11%，SaaS应该逢高卖出吗？", body_cn: "网络安全双雄财报后双双遇挫：CrowdStrike周三盘后重挫约11%，Palo Alto（PANW）周二财报后两日累跌至$271附近。两家\"平台化\"（platformization）与AI安全自动化（Agentic SOC）的长期叙事仍在，但高估值在财报兑现后遭遇集中获利了结。安全板块的AI溢价是否已被透支？这波软件回调会持续多久？", title_en: "CrowdStrike Drops 11%, Palo Alto Slides — Time to Sell SaaS Strength?", body_en: "Cybersecurity bellwethers stumbled post-earnings: CrowdStrike plunged roughly 11% in after-hours trading Wednesday, while Palo Alto Networks (PANW) shed further ground to near $271 over two sessions following its Tuesday report. Both companies' long-term \"platformization\" and AI-driven Agentic SOC narratives remain intact, but elevated valuations attracted concentrated profit-taking upon earnings delivery. Has the AI premium in security stocks been fully priced in — and how long will this software pullback last?" },
-  { ticker: "NVTS", title_cn: "Navitas暴涨19%，搭上英伟达MGX，追还是等回调？", body_cn: "Navitas今日暴涨19.26%，催化来自其与英伟达MGX平台达成合作——为新一代AI服务器机架提供GaN/SiC功率器件，切入AI数据中心\"供电\"这一高增长环节。在AI算力疯狂扩张、机架功率密度飙升的背景下，电源管理被视为继算力、内存、光模块之后又一条受益主线。但NVTS是高波动小盘股，单日近20%涨幅也透支了不少预期。功率半导体这条新支线，你会追，还是等回调？", title_en: "Navitas Surges 19% on Nvidia MGX Deal — Chase or Wait for Pullback?", body_en: "Navitas Semiconductor (NVTS) soared 19.26% after announcing a partnership with Nvidia's MGX platform, supplying GaN/SiC power devices for next-generation AI server racks — tapping into the high-growth power delivery segment of AI data centers. As AI compute expansion drives rack power density sharply higher, power management is emerging as a key beneficiary theme alongside compute, memory, and optical components. NVTS remains a high-volatility small-cap, however, and a near-20% single-day surge has priced in considerable optimism. Would you chase the power semiconductor breakout, or wait for a pullback?" },
-  { ticker: "SpaceX", title_cn: "SpaceX上市倒计时，太空股集体跳水，做多or做空？", body_cn: "SpaceX IPO进入倒计时，太空影子标的跟随市场大跌：Rocket Lab今日重挫6.99%，ASTS、SPCE、RDW隔夜继续走低。\"大空头\"Steve Eisman警告SpaceX估值相较英伟达\"离谱\"，Jefferies更开始为做空太空板块的资金牵线。一边是史诗级IPO的想象空间，一边是\"betting against space\"的逆向声音。上市在即，你会借RKLB/ASTS提前押注，还是跟着空头做反向？", title_en: "SpaceX IPO Countdown Hammers Space Stocks — Long or Short?", body_en: "Space-proxy equities slid as SpaceX's IPO approaches: Rocket Lab tumbled 6.99% Wednesday, while ASTS, SPCE, and RDW extended losses overnight. Noted short-seller Steve Eisman called SpaceX's valuation \"absurd\" relative to Nvidia's, and Jefferies has begun facilitating bearish positioning across the space sector. With an epic IPO narrative on one side and prominent contrarian voices on the other, would you use RKLB or ASTS to front-run the listing — or side with the shorts?" },
-  { ticker: "QQQ", title_cn: "中东战火重燃，美股终结连涨，该减仓避险了吗？", body_cn: "道指创3月以来最差单日——美伊交火再度升级点燃避险情绪，油价走高、加息预期升温，叠加AI/软件龙头财报后集体杀跌（AVGO、CRWD、NOW、ORCL均大跌），多日连涨的牛市首次明显回吐。ADP新增就业仅12.2万也给经济成色添了变数。地缘、利率、财报三重压力同时袭来，你会借机减仓避险吗？这是牛市小插曲还是连涨要终结了？", title_en: "Middle East Flare-Up Ends Wall Street's Win Streak — Time to De-Risk?", body_en: "The Dow posted its worst single session since March as renewed U.S.-Iran hostilities ignited risk-off sentiment, pushing oil higher and rekindling rate concerns. Compounding the pressure, AI and software leaders AVGO, CRWD, NOW, and ORCL all sold off sharply post-earnings, snapping a multi-day equity rally. ADP payrolls of just 122,000 added a fresh growth question mark. With geopolitical, rate, and earnings risks converging simultaneously, would you trim exposure here — or is this just a brief pause in the bull run?" },
+  { ticker: "MU", title_cn: "美光跌破$1000，内存抛物线见顶了吗？", body_cn: "美光（MU）今日重挫7.74%、失守$1000整数关口，终结本周连创新高的抛物线行情。博通财报指引逊色引爆AI芯片估值担忧，资金从前期涨幅最猛的内存板块集中获利了结，SanDisk跌3.92%、内存ETF（DRAM）跌5.75%同步降温。Morgan Stanley虽给出新评级，但抛物线见顶后的回撤往往又快又深。本周还在万亿新高、今天就跌穿$1000——你会当回调上车，还是把它当见顶离场的信号？", title_en: "Micron Breaks $100: Has the Memory Parabola Peaked?", body_en: "Micron (MU) tumbled 7.74% today, breaching the key $100 level and snapping a parabolic rally that had set fresh highs throughout the week. Broadcom's disappointing guidance triggered valuation concerns across AI chips, sparking concentrated profit-taking in memory — SanDisk fell 3.92% and the DRAM ETF dropped 5.75%. Morgan Stanley issued a new rating, but post-parabola pullbacks tend to be swift and steep. After hitting a trillion-dollar high this week and crashing through $100 today — do you buy the dip, or treat this as a topping signal?" },
+  { ticker: "AVGO", title_cn: "博通暴跌13%拖累全板块，Citi看到500美元，420能抄底吗？", body_cn: "博通今日重挫12.59%，AI收入指引不及最高预期引爆\"利好出尽\"，并拖累整个AI芯片板块——AMD跌3.56%、半导体三倍多ETF跌6.36%，唯英伟达逆势微涨1.94%相对抗跌。与此同时道指却创历史新高，\"卖出芯片、轮入价值\"的风格切换信号明显，机构直呼\"是时候兑现筹码\"。AI芯片交易集体降温，这是健康回调，还是牛市变盘的开始？", title_en: "Broadcom Plunges 13%, Drags Sector — Can $420 Mark a Bottom?", body_en: "Broadcom cratered 12.59% as AI revenue guidance fell short of peak expectations, triggering a classic \"buy the rumor, sell the news\" unwind that swept the AI chip space — AMD shed 3.56%, the 3x semiconductor ETF dropped 6.36%, while Nvidia bucked the trend with a modest 1.94% gain. Meanwhile, the Dow Jones hit a record high, signaling a clear rotation out of chips and into value, with institutions openly calling it \"time to take chips off the table.\" Is this a healthy cooldown in AI chip trading, or the beginning of a broader bull market reversal?" },
+  { ticker: "GOOG", title_cn: "谷歌逆势上涨，云叙事里谁被低估？", body_cn: "在AI芯片集体杀跌中，Alphabet（GOOG）逆势大涨3.82%，成为资金避风港。Google Cloud接连拿下大单（含与Palantir的合作），微软AI负责人也公开承认\"与谷歌的差距已大幅缩小\"，反衬谷歌AI落地与云业务的强势。当市场开始质疑AI硬件的高估值，叙事正从\"卖铲人\"（芯片）向\"用铲人\"（AI应用与云）迁移。这波从AI硬件到AI应用的轮动，你会跟吗？", title_en: "Alphabet Surges Against the Tide — Who Is Undervalued in the Cloud Narrative?", body_en: "As AI chip stocks sold off broadly, Alphabet (GOOG) bucked the trend with a strong 3.82% gain, emerging as a safe haven for rotating capital. Google Cloud continues to secure major contracts — including a new partnership with Palantir — while Microsoft's own AI chief publicly acknowledged that \"the gap with Google has narrowed significantly,\" underscoring Google's AI execution and cloud momentum. With markets questioning stretched AI hardware valuations, the narrative is shifting from \"picks and shovels\" (chips) to \"miners\" (AI applications and cloud). Will you follow this rotation from AI hardware to AI applications?" },
+  { ticker: "BTC", title_cn: "比特币跌破$62,000，Strategy打破\"永不卖出\"，避险还是抄底？", body_cn: "比特币今日下跌超5%、跌破$62,000，创2月6日以来新低，过去一周已累跌约16%。这波下跌始于Michael Saylor的Strategy抛售大额比特币、打破\"永不卖出\"承诺，重创市场信心。Animoca Brands首席投资官Josh Du称，随着油价攀升、宏观收紧，BTC有失守\"自伊朗战争以来一直守住的$62,000关口\"的风险。更关键的是，部分宏观/量化/跨资产基金正把AI/半导体当风险资产的\"强势端\"、把BTC当\"弱势端\"做配对交易（pair trade）。当AI芯片都开始回调，作为\"弱势端\"的比特币，你会避险离场，还是逆势抄底？", title_en: "Bitcoin Breaks $62,000, Strategy Abandons 'Never Sell' Pledge — Hedge or Buy the Dip?", body_en: "Bitcoin dropped over 5% today, falling below $62,000 to its lowest level since February 6 and losing roughly 16% over the past week. The selloff was sparked when Michael Saylor's Strategy liquidated a significant Bitcoin position, shattering its \"never sell\" commitment and dealing a sharp blow to market confidence. Animoca Brands CIO Josh Du warned that rising oil prices and macro tightening put BTC at risk of losing the $62,000 level \"it has held since the Iran conflict.\" Critically, some macro, quant, and cross-asset funds are running pair trades — long AI/semiconductors as the \"strong leg\" and short BTC as the \"weak leg.\" With AI chips now pulling back, do you exit Bitcoin to hedge risk, or go contrarian and buy the dip?" },
 ];
 let current = 0;
 
