@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-06-10 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-06-10</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 5</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 5 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "SPCX", title_cn: "SpaceX周五登陆，估值或超微软，追高还是等回调？", body_cn: "Space预计本周五正式IPO，这场史诗级招股的估值争议拉满——有交易员押注其上市当天市值可能超过微软，华尔街更预期其AI相关收入到2030年增长100倍。市场普遍认为这场招股提前抽走了数千亿流动性、是上周AI暴跌的隐性推手；一旦IPO落地、流动性释放，被错杀的板块或迎反弹。但\"打新还是再等\"分歧极大，散户还可借Rocket Lab、ASTS等可交易proxy提前卡位。本周五发令枪响，你会当日抢筹码，还是等情绪兑现后再进？", title_en: "SpaceX IPO Friday: Will Valuation Top Microsoft? Buy or Wait?", body_en: "SpaceX is set to IPO this Friday in what may be the most consequential public offering in years. Some traders expect its market cap to surpass Microsoft on debut, while Wall Street projects AI-related revenue to surge 100x by 2030. The listing is widely seen as having already drained hundreds of billions in liquidity — a stealth catalyst behind last week's AI selloff — with a potential relief rally in oversold sectors once capital is freed. Retail investors can gain early exposure via proxies like Rocket Lab and ASTS. Will you chase shares on day one, or wait for post-IPO euphoria to fade?" },
+  { ticker: "SOXL，NVDA", title_cn: "V型反弹只撑一天，半导体又回吐，牛市终结了吗？", body_cn: "周一的V型反弹仅维持了一天，周二半导体集体回吐：三倍多ETF（SOXL）跌4.62%，刚获标普500纳入的Marvell狂欢退潮、领跌7.61%，SK海力士2倍杠杆暴跌10.42%，AMD跌3.02%；但龙头英伟达逆势走平（-0.22%）、相对抗跌，与前一日的跑输形成反差。在半导体估值担忧未消的背景下，这波回吐是健康回踩，还是反弹只有一天？你会逢回调加仓，还是先减仓观望？", title_en: "Semis Erase V-Bounce in One Day — Is the Bull Run Over?", body_en: "Monday's V-shaped recovery lasted exactly one session, with semiconductors selling off sharply Tuesday: SOXL dropped 4.62%, newly S&P 500-added Marvell led losses at -7.61%, SK Hynix's 2x leveraged ETF plunged 10.42%, and AMD fell 3.02%. Notably, bellwether Nvidia held nearly flat at -0.22%, reversing its prior session underperformance. With valuation concerns in the sector unresolved, the question is whether this pullback is a healthy consolidation or confirmation that the one-day bounce was all the market had. Would you buy the dip or reduce exposure and wait?" },
+  { ticker: "KOSPI", title_cn: "韩股一周坐过山车，你持有海力士or三星吗？", body_cn: "韩国Kospi指数本周上演极端过山车——周一暴跌8.3%触发熔断、周二反弹8.2%、周三早盘又一度跌3.6%，芯片股延续跌势。占指数市值过半的三星电子与SK海力士是主要推手，AI内存股的剧烈动荡被直接传导到大盘。Kospi 200波动率指标周二首破90、创历史纪录——与三星、SK海力士挂钩的杠杆ETF日益流行，叠加散户融资加杠杆，正不断放大每日波动。韩股是观察全球AI交易拥挤度的最佳风向标——这场剧震，会是美股芯片的预演吗？", title_en: "Korean Stocks Ride Wild Week — Do You Hold Hynix or Samsung?", body_en: "South Korea's Kospi delivered one of the most extreme weekly swings in recent memory: plunging 8.3% Monday to trigger a circuit breaker, rebounding 8.2% Tuesday, then falling as much as 3.6% again Wednesday, with chipmakers continuing to drag. Samsung Electronics and SK Hynix — together representing over half the index by market cap — were the primary drivers, directly transmitting AI memory volatility into the broader market. The Kospi 200 volatility index surpassed 90 for the first time on record Tuesday, with surging popularity of leveraged ETFs and retail margin trading amplifying daily swings. With Kospi serving as the clearest barometer of global AI trade crowding, could this violent shakeout be a preview of what's ahead for U.S. chip stocks?" },
+  { ticker: "AAPL", title_cn: "WWDC后苹果连跌，新Siri是否被错杀了？", body_cn: "苹果在WWDC后连跌第二日、再跌3.64%失守$290，\"卖消息\"正演变成持续失望。市场对新Siri与Apple Intelligence的\"姗姗来迟又偏保守\"越来越不买账，担心苹果在AI落地上掉队、撑不起当前估值。在芯片与AI硬件主导的行情里，缺乏强AI叙事的苹果正被资金边缘化。WWDC利好落地却连跌，你会把苹果当超跌价值捡，还是叙事掉队的减仓对象？", title_en: "Apple Slides Again Post-WWDC — Is New Siri Being Unfairly Punished?", body_en: "Apple fell for a second consecutive session after WWDC, dropping 3.64% to break below $290, as the classic 'sell the news' dynamic deepens into sustained disappointment. Markets are increasingly skeptical of the new Siri and Apple Intelligence rollout, criticizing both the delayed timeline and conservative execution, raising concerns that Apple is falling behind in AI deployment and cannot justify its current valuation. In a market dominated by chip and AI hardware narratives, Apple's lack of a compelling AI story is drawing capital away. With shares declining despite the WWDC catalyst, do you see Apple as an oversold value play — or a narrative laggard worth trimming?" },
+  { ticker: "WORLDCUP", title_cn: "世界杯豪赌500亿美元，股市\"魔咒\"是真的吗？", body_cn: "2026年世界杯将成为史上最大规模的体育博彩盛事之一，全球总投注额预计高达约500亿美元！本届赛事由美国、加拿大、墨西哥联合主办，48支球队、104场比赛，从6月11日打到7月19日，是史上最大的一届世界杯——揭幕战在墨西哥城、决赛落在新泽西，预计吸引约600万球迷到场。值得玩味的是那个市场\"魔咒\"：过去八届世界杯期间，纳斯达克有五届下跌、平均回报-1.2%。你相信\"世界杯魔咒\"吗？这届你最看好谁夺冠？", title_en: "World Cup Draws $50B in Bets — Is the Stock Market 'Curse' Real?", body_en: "The 2026 FIFA World Cup is on track to become one of the largest sports betting events in history, with global wagers projected to reach approximately $50 billion. Co-hosted by the U.S., Canada, and Mexico, the tournament features 48 teams across 104 matches from June 11 to July 19 — the biggest World Cup ever — with the opener in Mexico City and the final in New Jersey, expected to draw around 6 million fans. Adding intrigue for investors: the Nasdaq has declined in five of the past eight World Cup cycles, averaging a -1.2% return during tournament windows. Do you believe in the 'World Cup curse' — and who's your pick to lift the trophy?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
