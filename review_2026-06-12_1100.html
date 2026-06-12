@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-06-12 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-06-12</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 4</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 4 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "MU", title_cn: "芯片过山车，SOXL单日飙24%，这次见底了吗？", body_cn: "半导体上演本周第二轮暴力反弹：三倍多ETF（SOXL）单日狂飙23.99%，美光涨11.66%重回$995、Marvell涨11.13%、英特尔涨9.27%，连前一日暴跌28%的超微也反弹9.22%，三倍空（SOXS）暴跌24.35%。从上周崩盘到本周的\"跌-涨-跌-涨\"反复折返，波动率高到离谱。多头说去杠杆已出清、抄底资金回流，空头说这只是下跌中继的诱多。这种过山车里，你会追这波反弹，还是等波动平息再说？", title_en: "Chip Stocks Rollercoaster: SOXL Surges 24% — Has the Bottom Arrived?", body_en: "Semiconductors staged their second violent rebound of the week: 3x leveraged ETF SOXL surged 23.99% in a single session, with Micron up 11.66% reclaiming $99, Marvell gaining 11.13%, Intel rising 9.27%, and Super Micro — which crashed 28% the prior day — rebounding 9.22%; inverse ETF SOXS plunged 24.35%. The market has swung through a relentless down-up-down-up cycle since last week's selloff, with volatility at extreme levels. Bulls argue deleveraging has cleared and dip-buying capital is returning; bears call this a bear-market trap. In this kind of rollercoaster, would you chase this bounce or wait for volatility to subside?" },
+  { ticker: "SPCX", title_cn: "SpaceX IPO!贝莱德豪掷$50亿抢筹，首日你会买吗？", body_cn: "SpaceX预计今日正式IPO，机构需求火爆——彭博称贝莱德的认购订单瞄准约50亿美元；与此同时，有散户正抛售美光、高通、博通等芯片股，腾挪资金去打这场新股。太空\"影子标的\"提前狂欢：Rocket Lab涨9.26%领涨板块。市场普遍认为这场史诗级招股既抽走流动性、也是行业的\"结构性信号\".你会首日买入SpaceX、借RKLB等proxy卡位，还是等情绪兑现后再进？", title_en: "SpaceX IPO: BlackRock Eyes $5B Order — Will You Buy on Day One?", body_en: "SpaceX is set to officially IPO today amid scorching institutional demand — Bloomberg reports BlackRock's subscription order targets approximately $5 billion. Meanwhile, some retail investors are rotating out of chip names including Micron, Qualcomm, and Broadcom to fund their IPO allocations. Space-sector proxies surged in anticipation, with Rocket Lab (RKLB) leading gains at 9.26%. Markets widely view this landmark offering as both a liquidity drain and a structural signal for the industry. Will you buy SpaceX on day one, position via proxies like RKLB, or wait for the hype to fade before entering?" },
+  { ticker: "ADBE", title_cn: "Adobe双beat还上调指引，却创7年新低？", body_cn: "Adobe（ADBE）Q2营收$66.2亿、EPS $5.96双双超预期，并上调全年指引，但股价正式重挫6.25%、创七年多新低，盘后再跌5.5%至$207。两个利空盖过了好数字：CFO Dan Durn将于6月15日离职，以及公司因转向Acrobat/Firefly的免费增值（freemium）获客、主动下调下半年ARR增速预期。Adobe是被错杀，还是AI软件估值集体退潮的又一例？", title_en: "Adobe Beats and Raises Guidance — So Why Is It at a 7-Year Low?", body_en: "Adobe (ADBE) reported Q2 revenue of $6.62 billion and EPS of $5.96, both topping estimates, while raising full-year guidance — yet shares plunged 6.25% to a seven-year low, falling a further 5.5% after hours to $207. Two headwinds overshadowed the beat: CFO Dan Durn's departure effective June 15, and management's deliberate reduction of second-half ARR growth guidance as the company pivots to freemium acquisition via Acrobat and Firefly. Is Adobe a victim of an unfair selloff, or simply the latest casualty of a broader AI software valuation reset?" },
+  { ticker: "LEN", title_cn: "Lennar营收不及预期、下调全年交付，高利率又是利空？", body_cn: "房屋建筑商Lennar（LEN）调整后EPS $1.31小幅超预期，但营收$79亿不及预期，并把全年交付目标下调至约8.2万–8.3万套，直言高利率与地缘不确定性拖累需求。新签订单同比降4%、毛利率约15.6%，公司转向\"以量保份额\"、牺牲利润率换销量。正式交易涨5.68%，盘后却转跌2.05%。作为对利率最敏感的地产链龙头，Lennar的谨慎指引印证了\"高利率维持更久\"的代价。当降息预期一再落空，地产股你会逢低布局，还是继续回避？", title_en: "Lennar Misses Revenue, Cuts Delivery Outlook — High Rates Bite Again?", body_en: "Homebuilder Lennar (LEN) posted adjusted EPS of $1.31, narrowly beating estimates, but revenue of $7.9 billion missed expectations; the company cut its full-year delivery target to approximately 82,000–83,000 homes, citing high interest rates and geopolitical uncertainty as demand headwinds. New orders fell 4% year-over-year and gross margin came in at approximately 15.6%, as management shifted to a volume-over-margin strategy to defend market share. Shares gained 5.68% in regular trading before reversing 2.05% after hours. As the most rate-sensitive bellwether in homebuilding, Lennar's cautious guidance underscores the mounting cost of a higher-for-longer rate environment. With rate-cut expectations repeatedly pushed out, would you buy housing stocks on weakness or continue to stay on the sidelines?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
