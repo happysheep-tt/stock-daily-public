@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-15 AM</title>
+<title>Topics Review — 2026-06-16 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-15</div>
+      <div class="date-label">2026-06-16</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 3</div>
+      <div class="progress-text" id="progressText">1 / 6</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:33.3%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:16.7%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 3 topics uploaded
+    ✅ All done! 6 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,9 +165,12 @@
 </div>
 <script>
 const topics = [
-  { ticker: "SPCX", title_cn: "SpaceX上市即狂飙20%，影子股Rocket Lab崩了，资金大迁移？", body_cn: "SpaceX（SPCX）上市后持续狂飙，今日再涨19.22%、周五一度冲上$175，一举跻身美股市值第六大公司，把太空同业远远甩开；而此前被当作SpaceX代理的Rocket Lab（RKLB）今日重挫10.79%——资金正从\"影子标的\"大举迁回真身。估值争议拉满：看多者称\"25倍2027年销售额、理解了Starship就不算贵\"，看空者则喊\"等回调再上\"。当真正的SpaceX已能直接买，proxy的溢价逻辑还成立吗？这波你会追高SpaceX，还是抄底被错杀的RKLB？", title_en: "SpaceX Surges 20% at Debut, Rocket Lab Craters — Proxy Trade Dead?", body_en: "SpaceX (SPCX) extended its post-IPO rally, surging another 19.22% and briefly hitting $175 Friday, vaulting to the sixth-largest U.S. company by market cap and leaving space peers behind. Meanwhile, Rocket Lab (RKLB) — long used as a SpaceX proxy — plunged 10.79% as capital rotates back to the real asset. Bulls cite \"25x 2027 sales is fair if you understand Starship\"; bears say wait for a pullback. Now that SpaceX trades directly, does the proxy premium still hold — and will you chase SPCX or buy the RKLB dip?" },
-  { ticker: "SNDK", title_cn: "SanDisk年内飙涨600%再创新高，$2000关口还追吗？", body_cn: "SanDisk（SNDK）今日大涨5.24%、逼近$2000再创52周新高，年内累计暴涨约600%，是AI存储超级周期里最猛的标的之一。AI数据中心对高速大容量存储的需求持续点燃想象，但同属内存的美光今日反而微跌1.43%——板块内部出现分化，龙头降温、二线续创新高。年内600%之后，SanDisk是趋势仍在的强势股，还是抛物线尾声的最后一棒？你会追$2000，还是落袋为安？", title_en: "SanDisk Up 600% YTD, Nears $2,000 All-Time High — Still Chasing?", body_en: "SanDisk (SNDK) surged 5.24% today, approaching $2,000 to set a fresh 52-week high and extending year-to-date gains to roughly 600%, making it one of the AI storage cycle's biggest winners. AI data center demand for high-speed, high-capacity storage continues to fuel the rally, even as sector peer Micron dipped 1.43% — signaling internal divergence with the leader cooling while secondary names press higher. After a 600% run, is SanDisk a momentum stock with room to go, or the last leg of a parabolic move — will you chase $2,000 or take profits?" },
-  { ticker: "AMD", title_cn: "Citi升AMD至买入称\"GPU新势力\"，芯片集体反弹，反转来了？", body_cn: "AMD今日大涨4.73%，催化来自花旗将其上调至\"买入\"、并称其为GPU市场\"崛起的新势力\"，为MI系列加速卡的份额故事再加码。整个芯片板块隔夜集体反弹——英特尔涨6.51%、半导体三倍多ETF（SOXL）涨4.77%，NVDA、MU等也在盘前走高。在经历上周史诗级去杠杆后，机构升级叠加超跌反弹，资金重新流回芯片。这波是趋势反转的确认，还是又一次反弹诱多？AMD你会跟吗？", title_en: "Citi Upgrades AMD to Buy, Labels It GPU 'New Force' — Chip Reversal?", body_en: "AMD jumped 4.73% after Citigroup upgraded the stock to Buy, calling it a \"rising new force\" in the GPU market and reinforcing the MI-series accelerator share narrative. The broader chip sector rebounded overnight — Intel gained 6.51%, the 3x Semiconductor ETF (SOXL) rose 4.77%, while NVDA and MU also moved higher in pre-market trading. Following last week's epic deleveraging, the combination of an institutional upgrade and deeply oversold conditions is pulling capital back into semiconductors. Is this a confirmed trend reversal or another bull trap — will you follow AMD here?" },
+  { ticker: "SPCX", title_cn: "SpaceX再飙20%突破200美元！冲向$2万亿还追得动吗？", body_cn: "SpaceX延续上市后的抛物线，今日再涨19.60%、夜盘进一步冲破$211（再涨9.62%），有分析直接喊出\"已离开地球的$2万亿股票\"，马斯克新发帖叠加美伊达成协议点燃市场euphoria。但风险也在累积——连看多加密的Novogratz都坦言\"对SpaceX感到紧张\"，抛物线越陡、回撤越凶。上市仅数日就连续狂飙，你会继续追这枚\"火箭\"，还是等第一次像样的回调？", title_en: "SpaceX Surges Another 20%, Tops $200 — Can You Still Chase the $2T Rocket?", body_en: "SpaceX extended its post-listing parabolic run, surging 19.60% intraday and pushing further to $211 in after-hours trading (+9.62%), with analysts calling it a \"$2 trillion stock that has left Earth.\" Musk's latest post and a U.S.-Iran agreement fueled market euphoria. Yet even crypto bull Novogratz admitted he feels \"nervous about SpaceX\" — the steeper the parabola, the sharper the reversal. Will you keep chasing this rocket, or wait for the first real pullback?" },
+  { ticker: "MU", title_cn: "美光$1000, sandisk $2000，内存还能涨多久？", body_cn: "美光今日暴涨10.84%、重返$1000上方再创历史新高，昨日还相对走弱的内存龙头强势回归、领涨板块。SanDisk续涨6.45%至$2107、内存ETF（DRAM）大涨9.32%，整个存储链在AI数据中心需求下集体狂欢，超级周期叙事重新加速。但抛物线式新高也意味着越来越拥挤的交易。从\"砍单恐慌\"到再创新高只用了一周，这波内存你会追高，还是警惕见顶？", title_en: "Micron Tops $1,000, SanDisk $2,000 — How Much Further Can Memory Run?", body_en: "Micron surged 10.84%, reclaiming $1,000 to set a new all-time high, while SanDisk gained 6.45% to $2,107 and memory ETF DRAM jumped 9.32%, as AI data center demand reignited a broad-based memory rally. The super-cycle narrative is accelerating again — just one week after panic over order cuts, the sector is printing fresh highs. But parabolic moves mean increasingly crowded trades. Will you chase the breakout, or stay cautious watching for a top?" },
+  { ticker: "NVDA", title_cn: "英伟达250亿债券遭3倍抢购，AI加码，怎么看？", body_cn: "英伟达今日涨3.54%，并完成一笔250亿美元的高评级债券发行——认购订单高达850亿美元、超额逾3倍，发行规模也从最初约200亿上调至250亿。最长期限债券收益率较初始指引收窄0.25个百分点，最终溢价仅比美国国债高0.65个百分点，融资成本极低。英伟达正以巨头信用低成本融资、为AI军备竞赛持续加码。当债市都抢着借钱给英伟达，这是护城河的又一证明，还是capex越滚越大的隐忧？", title_en: "Nvidia's $25B Bond Issue Draws 3x Oversubscription — Bullish Signal or Capex Warning?", body_en: "Nvidia rose 3.54% as it priced a $25 billion investment-grade bond offering that drew $85 billion in orders — more than 3x oversubscribed — with deal size upsized from an initial ~$20 billion. The longest-dated tranche tightened 25 basis points from initial guidance, with the final spread just 65 basis points over Treasuries, reflecting near-frictionless borrowing costs. Nvidia is leveraging its blue-chip credit to fund the AI arms race at minimal cost. With bond markets lining up to lend, is this further proof of its moat — or a sign of an ever-expanding capex burden?" },
+  { ticker: "AMD", title_cn: "AMD再涨7%领涨芯片，gpu最佳标的？", body_cn: "AMD今日大涨6.98%、领涨半导体，在美伊达成协议带来的全面risk-on中弹性十足。继花旗上调至\"买入\"、称其为GPU市场\"崛起的新势力\"后，动能延续，MI系列加速卡的份额预期持续升温。芯片板块整体暴力反弹（SOXL +16%），AMD作为高beta标的涨幅居前。但从上周崩盘到本周狂欢的剧烈切换，也意味着波动远未平息。AMD这波领涨，你会追高弹性，还是等回踩再上？", title_en: "AMD Leads Chip Rally With 7% Gain — The Top GPU Play?", body_en: "AMD surged 6.98%, leading the semiconductor sector as the U.S.-Iran agreement triggered broad risk-on buying, with the high-beta name delivering outsized gains. Momentum continues to build following Citi's upgrade to Buy, labeling AMD an \"emerging force\" in the GPU market, with MI-series accelerator share expectations running hot. The broader chip complex rebounded violently — SOXL +16% — but the whiplash from last week's selloff to this week's euphoria signals volatility is far from over. Will you chase AMD's leadership here, or wait for a pullback to re-enter?" },
+  { ticker: "QQQ", title_cn: "美伊达成协议，道指新高，牛市彻底回来了吗？", body_cn: "纳指QQQ大涨3.14%、道指创历史新高，市场在\"美伊达成协议 + 和平预期 + SpaceX乐观\"的三重催化下全面risk-on。芯片领涨——半导体三倍多ETF（SOXL）暴涨16.12%、AMD涨6.98%、Nebius涨11.93%，上周史诗级去杠杆的恐慌被一扫而空。但也有声音提醒\"全世界都以为战争结束了，其实没有\"，且\"AI交易的每个担忧都真实存在、只是还没变成催化剂\"。从崩盘到狂欢只隔一周，这波你会满仓追，还是留一手防变脸？", title_en: "U.S.-Iran Deal Sends Dow to Record High — Is the Bull Market Fully Back?", body_en: "The Nasdaq QQQ surged 3.14% and the Dow Jones hit an all-time high, as a triple catalyst of U.S.-Iran deal, peace expectations, and SpaceX optimism drove broad risk-on buying. Semiconductors led — SOXL +16.12%, AMD +6.98%, Nebius +11.93% — completely erasing last week's epic deleveraging panic. Yet skeptics warn \"the world thinks the war is over, but it isn't,\" and that \"every concern about the AI trade is real, just not yet a catalyst.\" From crash to euphoria in a single week — will you go all-in, or keep some powder dry in case the mood turns?" },
+  { ticker: "GLD", title_cn: "黄金持续反弹，现在上车还来得及吗？", body_cn: "黄金ETF今日上涨2.59%，现货金价在跌至约$4000关口后企稳反弹、重回$4300上方（7日低点约$4050）。在美伊达成协议、风险偏好全面回暖、资金涌入股市的背景下，本应承压的黄金却在$4000整数大关获得强支撑——多头视其为超跌后的修复起点，空头则担心这只是risk-on行情里的反抽。$4000能否成为这轮回调的铁底，决定后市方向。黄金这波反弹，你会逢低布局，还是等突破前高再确认？", title_en: "Gold Rebounds Sharply — Is It Too Late to Buy?", body_en: "Gold ETFs gained 2.59% as spot prices stabilized near the $4,000 level before rebounding back above $4,300, having bottomed around $4,050 over the past seven days. Despite risk appetite surging on the U.S.-Iran agreement and capital rotating into equities — conditions that typically pressure gold — the metal found firm support at the key $4,000 psychological level. Bulls see it as a recovery from oversold conditions; bears view it as a dead-cat bounce in a risk-on market. Whether $4,000 holds as the cycle floor will define gold's next directional move. Will you buy this dip, or wait for a breakout above prior highs before committing?" },
 ];
 let current = 0;
 
