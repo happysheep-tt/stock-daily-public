@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-17 AM</title>
+<title>Topics Review — 2026-06-18 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-17</div>
+      <div class="date-label">2026-06-18</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 5</div>
+      <div class="progress-text" id="progressText">1 / 4</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 5 topics uploaded
+    ✅ All done! 4 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,11 +165,10 @@
 </div>
 <script>
 const topics = [
-  { ticker: "SPCX", title_cn: "SpaceX迎首个卖出评级，狂热到头了吗？", body_cn: "SpaceX今日仍涨4.83%、站上$200，但华尔街首份\"卖出\"评级正式落地——分析师直言当前估值已脱离基本面，连Reddit散户都自嘲\"没人是看基本面在买SPCX\"。上市数日累计暴涨后，盘中一度大幅回吐涨幅，多空首次正面交锋：一边是\"已离开地球的$2万亿\"叙事，一边是首个空头与\"纯情绪驱动\"的警告。当第一个卖出评级出现，散户狂热还能撑多久？你会继续追，还是开始获利了结？", title_en: "SpaceX Receives First Sell Rating — Has the Frenzy Peaked?", body_en: "SpaceX shares still gained 4.83% today, holding above $200, but Wall Street's first official sell rating has landed, with analysts warning current valuations have decoupled from fundamentals. Even Reddit retail traders joke that 'nobody is buying SPCX on fundamentals.' After surging dramatically since listing, shares gave back gains sharply intraday as bulls citing a '$2 trillion narrative that has left Earth' clashed with the first short call. With the first sell rating now on record, how much longer can retail euphoria hold — will you keep chasing, or start taking profits?" },
-  { ticker: "NVDA", title_cn: "芯片再度跳水，nvidia扛得住过山车吗？", body_cn: "英伟达今日跌2.37%，与博通、美光一同领跌纳指，半导体再度上演暴力跳水——三倍多ETF重挫16.99%、Marvell跌9.78%、AMD跌7.30%、英特尔跌8.45%，昨日的melt-up一夜回吐。资金正从拥挤的AI硬件撤向道指（道指逼近52000点新高），\"卖科技、买价值\"的轮动明显。作为龙头，NVDA相对抗跌（-2.4% vs 同业双位数），但过山车远未结束。这种巨震里，你会守龙头，还是先离场避险？", title_en: "Chip Stocks Plunge Again — Can NVDA Handle the Volatility?", body_en: "NVIDIA fell 2.37% today, leading the Nasdaq lower alongside Broadcom and Micron in another violent semiconductor selloff — the 3x leveraged chip ETF collapsed 16.99%, Marvell dropped 9.78%, AMD fell 7.30%, and Intel slid 8.45%, fully erasing yesterday's melt-up. Capital is rotating out of crowded AI hardware into the Dow, which is pushing toward a new high near 52,000, making the 'sell tech, buy value' shift increasingly apparent. As the sector bellwether, NVDA held up relatively well at -2.4% versus double-digit peer losses — but the rollercoaster is far from over. In this kind of volatility, will you hold the leader or step aside?" },
-  { ticker: "DIA", title_cn: "大盘回调，资金轮动入道指，卖科技、买价值？", body_cn: "当AI硬件全线杀跌、纳指跳水拖累大盘回调，道指却逆势逼近52000、稳在历史新高——一场\"卖科技、买价值\"的高低切换正在上演。美伊局势缓和、油价回落至$77，地缘风险溢价消退，资金正从拥挤的高估值AI科技，流向被冷落已久的价值与周期股（金融、工业、医药等）。这轮轮动里，你会从AI硬件减仓、转向道指价值股，还是坚持科技回调即上车点？", title_en: "Markets Dip as Rotation Into Dow Accelerates — Sell Tech, Buy Value?", body_en: "While AI hardware stocks sold off sharply and the Nasdaq dragged the broader market lower, the Dow pushed against 52,000 to hold near all-time highs, signaling a clear 'sell tech, buy value' rotation. Easing U.S.-Iran tensions pulled oil back to $77, reducing geopolitical risk premiums and driving capital from crowded, high-multiple AI names into neglected value and cyclical sectors including financials, industrials, and healthcare. In this rotation, will you trim AI hardware exposure and shift toward Dow value stocks, or treat the tech pullback as a buying opportunity?" },
-  { ticker: "WDC", title_cn: "存储集体杀跌，西部数据逆势涨4%，\"新AI play\"成立吗？", body_cn: "在美光跌6.18%、SanDisk跌5.52%的存储普跌中，西部数据逆势大涨4.22%、夜盘再涨3.19%，被市场重新定义为\"新的AI play\"。逻辑是AI数据中心对大容量近线存储（HDD/nearline）的需求被低估，WDC的HDD业务正搭上AI扩容的顺风车，市场甚至抛出\"还能再翻几倍\"的疑问。当闪存（MU/SNDK）因拥挤交易回调，资金转向被忽视的HDD龙头。WDC的\"AI存储\"新叙事，是错杀后的价值重估，还是又一个跟风炒作？", title_en: "Storage Stocks Tumble, But Western Digital Surges 4% — New AI Play?", body_en: "While Micron fell 6.18% and SanDisk dropped 5.52% in a broad storage selloff, Western Digital surged 4.22% during regular trading and added another 3.19% after hours, as markets recast it as 'the new AI play.' The thesis: demand for high-capacity nearline storage — HDD and nearline drives — in AI data centers is being underpriced, positioning WDC's HDD business as a direct beneficiary of AI infrastructure expansion. As flash memory names like MU and SNDK pull back on crowded trades, capital is rotating to the overlooked HDD leader. Is WDC's 'AI storage' narrative a genuine value rerating after being ignored, or just the latest momentum trade?" },
-  { ticker: "CRWV", title_cn: "CoreWeave逆势飙9.7%，Cantor喊$167，还能追吗？", body_cn: "在AI硬件全线杀跌中，CoreWeave逆势大涨9.67%，成为资金的逆势避风港。Cantor Fitzgerald重申\"增持\"、维持$167目标价（较现价仍有大幅空间），看好其AI算力出租的需求与执行力；也有机构给出\"买CoreWeave、卖Nebius\"的配对建议，认为CRWV在估值与执行上更胜一筹。当上游芯片因拥挤交易回吐，下游\"卖算力\"的新云反而受到青睐。绑定英伟达最深的AI新云，这次能扛住板块逆风吗？", title_en: "CoreWeave Surges 9.7% Against the Tape — Cantor Targets $167, Still a Buy?", body_en: "CoreWeave bucked a broad AI hardware selloff with a 9.67% gain, emerging as a contrarian safe haven for rotating capital. Cantor Fitzgerald reiterated Overweight with a $167 price target — implying significant upside — citing strong demand for CRWV's AI compute rental model and execution track record; one firm also issued a 'long CRWV, short Nebius' paired trade, arguing CoreWeave holds the edge on both valuation and delivery. As upstream chipmakers give back gains on crowded positioning, downstream 'compute-as-a-service' cloud players are drawing fresh interest. Can the AI cloud most deeply tied to NVIDIA hold its ground against broader sector headwinds?" },
+  { ticker: "MSFT", title_cn: "微软重挫4%，Copilot改按用量收费，AI越烧越贵了？", body_cn: "微软今日大跌3.79%，催化来自其将Copilot转向\"按用量计费\"——在AI推理成本持续攀升的背景下，这一定价调整被市场解读为\"AI变现远比想象中烧钱\"的信号。作为AI capex最重的巨头之一，微软的盈利模型正被重新审视：当AI算力账单越滚越大，Copilot的订阅故事还撑得起估值吗？这波回调，你会逢低吸纳，还是担心AI成本吞噬利润？", title_en: "Microsoft Plunges 4% as Copilot Shifts to Usage-Based Pricing — Is AI Getting Too Costly?", body_en: "Microsoft fell 3.79% after pivoting Copilot to a usage-based pricing model, a move markets interpreted as a signal that AI monetization is far more capital-intensive than anticipated. As one of the heaviest AI capex spenders, Microsoft's profit model is under fresh scrutiny. With AI infrastructure costs mounting, can Copilot's subscription narrative still justify its valuation — and is this dip a buying opportunity or a warning on AI margin erosion?" },
+  { ticker: "QQQ", title_cn: "鹰派Warsh首秀点燃加息恐慌，成长股该减仓了吗？", body_cn: "纳指QQQ跌1.01%、标普与纳指齐挫，导火索是新任美联储主席Kevin Warsh的FOMC首秀——虽按兵不动维持利率不变，但表态明显比预期更鹰派，叠加实际工资连续两月下滑、通胀回升，市场重燃\"加息\"恐慌。高估值成长股首当其冲（META、MSFT领跌），资金延续昨日\"卖科技、买价值\"的高低切换——鹰派Fed恰好坐实了道指/价值股的轮动逻辑。当\"更高更久\"的利率成为共识，你会继续减仓成长、转向价值，还是赌Fed很快转鸽？", title_en: "Hawkish Warsh Debut Sparks Rate Hike Fears — Time to Cut Growth Exposure?", body_en: "QQQ fell 1.01% as new Fed Chair Kevin Warsh delivered a more hawkish-than-expected debut FOMC appearance, holding rates steady but striking a firm tone. With real wages declining for two consecutive months and inflation re-accelerating, rate hike fears resurfaced, hitting high-multiple growth stocks hardest — META and MSFT led losses as capital rotated from tech into value for the second straight session. With 'higher for longer' becoming consensus, will you keep trimming growth and rotating to value, or bet on a swift Fed pivot?" },
+  { ticker: "META", title_cn: "Meta暴跌5%，AI数据泄露会继续下跌吗？", body_cn: "Meta今日重挫5.44%、成为表现最差的科技巨头，遭遇双重打击：一是\"Meta AI数据泄露\"曝出新的安全漏洞——AI助手无法有效验证请求背后的用户身份，引发对其AI产品安全性的担忧。AI安全的信任裂缝叠加宏观逆风，Meta这波下跌是错杀的捡漏机会，还是AI隐患暴露的开始？你会逢跌买入吗？", title_en: "Meta Crashes 5% on AI Data Breach — Is More Downside Ahead?", body_en: "Meta plunged 5.44%, making it the worst-performing mega-cap tech stock of the session, hit by a dual blow: a newly disclosed security vulnerability revealed Meta AI's assistant cannot effectively verify the identity of users behind requests, raising serious concerns over the safety of its AI products. With an AI trust deficit compounding macro headwinds, is Meta's selloff an oversold buying opportunity or the beginning of a deeper AI risk unwind — would you buy this dip?" },
+  { ticker: "AVGO", title_cn: "博通获大行喊\"激进买入\"，分化来了？", body_cn: "博通涨4.30%，JPMorgan喊话\"应在当前位置激进买入\"；Marvell涨3.90%、分析师上调目标价$105，称\"AI订单在与Nvidia关联的动能上持续累积\"。订单能见度仍在升温的AI硬件，资金在科技内部开始挑肥拣瘦。当软件与硬件走向分化，你更看好被错杀的软件巨头，还是订单坚挺的AI芯片？", title_en: "Broadcom Gets 'Aggressive Buy' From JPMorgan — Is a Sector Rotation Underway?", body_en: "Broadcom surged 4.30% after JPMorgan urged investors to 'buy aggressively at current levels,' while Marvell gained 3.90% as analysts raised their price target to $105, citing 'continued AI order momentum tied to Nvidia-linked activity.' Visibility on AI hardware orders remains strong, with capital within the tech sector becoming increasingly selective. As software and hardware diverge, do you favor beaten-down software giants or AI chipmakers with resilient order books?" },
 ];
 let current = 0;
 
