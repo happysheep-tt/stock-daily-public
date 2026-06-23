@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-19 AM</title>
+<title>Topics Review — 2026-06-23 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-19</div>
+      <div class="date-label">2026-06-23</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 4</div>
+      <div class="progress-text" id="progressText">1 / 5</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:20.0%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 4 topics uploaded
+    ✅ All done! 5 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,10 +165,11 @@
 </div>
 <script>
 const topics = [
-  { ticker: "SPCX", title_cn: "SpaceX连跌、IPO狂热消退，\"历史说卖出\"，该下车了吗？", body_cn: "SpaceX（SPCX）今日再跌3.56%、连续回落至$185，上市初期的狂热正快速消退。多篇分析转向谨慎——\"史上最佳IPO，现在才是最难的部分\"、\"IPO历史规律告诉你现在该卖\"，连长期持有者都被建议\"趁强势了结\"。在首个卖出评级之后空头声音成势，加上\"AI如何毁掉一门完美生意\"的质疑，情绪交易的潮水正在退去。从上市暴涨到三连跌，你会趁反弹离场，还是等回调到位再抄底？", title_en: "SpaceX Slides for Third Day to $185 — Time to Exit?", body_en: "SpaceX (SPCX) fell another 3.56% today, retreating to $185 as IPO euphoria rapidly fades. Analyst sentiment has shifted cautious, with calls to 'sell based on historical IPO patterns' and advice for long-term holders to 'take profits into strength.' The first sell rating has emboldened bears, while questions over AI disrupting its core business add pressure. From a post-IPO surge to three straight losses — do you sell the next bounce, or wait for a deeper pullback to buy in?" },
-  { ticker: "MU", title_cn: "苹果警告内存涨价不可避免，美光SanDisk齐创新高，超级周期坐实？", body_cn: "内存板块集体暴涨：美光（MU）涨8.70%、SanDisk涨11.54%双双再创历史新高，催化来自苹果罕见地警告\"内存价格上涨不可避免\"——下游巨头主动确认涨价，被市场视为AI存储超级周期的强力背书。SanDisk年内涨幅已达惊人的4600%，内存ETF（DRAM）今日也涨9.66%。当连苹果都承认要为内存多付钱，供需紧张的逻辑进一步坐实。但抛物线式新高也意味着越来越拥挤的交易。这波内存你会追高，还是警惕见顶？", title_en: "Apple Warns on Memory Prices; MU, SanDisk Hit Record Highs — Super Cycle Confirmed?", body_en: "Memory stocks surged after Apple issued a rare warning that 'rising memory prices are inevitable,' with Micron (MU) jumping 8.70% and SanDisk soaring 11.54% to fresh all-time highs — markets read the downstream giant's admission as a powerful endorsement of the AI storage super-cycle thesis. SanDisk has now surged an extraordinary 4,600% year-to-date, while memory ETF DRAM climbed 9.66% on the day. With even Apple confirming it will pay more for memory, the supply-demand tightness narrative is firmly intact — but parabolic highs also signal an increasingly crowded trade. Will you chase memory here, or watch for a peak?" },
-  { ticker: "INTC", title_cn: "特朗普称苹果将用英特尔造芯，INTC暴涨11%，翻身实锤了？", body_cn: "英特尔（INTC）今日暴涨10.64%，导火索是特朗普公开表示\"苹果将与英特尔合作造芯片\"——若苹果这一顶级客户真的落地，将为Intel挣扎已久的代工业务注入强心针。在此前谷歌加码、\"$170亿AI理由\"之后，Apple这张潜在大单把\"Intel翻身\"的故事推向高潮。但政治表态与商业落地之间仍有距离，市场也在等正式确认。从弃子到香饽饽，英特尔这波你会追，还是等苹果订单坐实再说？", title_en: "Trump Says Apple to Fab With Intel; INTC Surges 11% — Turnaround Confirmed?", body_en: "Intel (INTC) surged 10.64% after President Trump publicly stated 'Apple will partner with Intel to manufacture chips' — if the marquee customer relationship materializes, it would be a major catalyst for Intel's long-struggling foundry business. Following recent wins with Google and the '$17 billion AI case' for Intel, a potential Apple order pushes the turnaround narrative to a new peak. Yet a political statement remains a long way from a signed contract, and markets are awaiting official confirmation. From industry castoff to coveted partner — do you chase INTC now, or wait for the Apple deal to be locked in?" },
-  { ticker: "QQQ", title_cn: "昨天鹰派Fed卖科技，今天芯片暴力反攻，韧性还是假摔？", body_cn: "纳指QQQ涨2.51%、收复昨日鹰派Fed的失地，芯片暴力反攻——三倍多ETF（SOXL）飙涨19.43%。但行情高度集中在芯片/内存（INTC、SanDisk、美光领涨），龙头英伟达仅涨2.95%、明显跑输二线。这波反攻靠的是苹果内存涨价、特朗普力挺Intel等个股催化，而非宏观转向——鹰派Warsh的紧缩基调并未改变。一天卖科技、一天抢芯片，市场情绪反复横跳。这轮芯片反攻是真韧性，还是又一次靠题材撑起的假摔？", title_en: "Chips Stage Violent Reversal After Hawkish Fed Selloff — Resilience or a Fake Bounce?", body_en: "The Nasdaq QQQ rebounded 2.51%, recouping yesterday's hawkish Fed-driven losses, as chip stocks staged a sharp counterattack — leveraged ETF SOXL spiked 19.43%. Gains were heavily concentrated in chips and memory, with INTC, SanDisk, and Micron leading, while bellwether Nvidia rose just 2.95%, notably lagging second-tier names. The rally was driven by stock-specific catalysts — Apple's memory price warning and Trump's Intel endorsement — not a macro shift, as hawkish Fed Governor Warsh's tightening stance remains unchanged. One day selling tech, the next day rushing into chips — is this rally genuine resilience, or another theme-driven fake bounce?" },
+  { ticker: "SPCX", title_cn: "SpaceX单日崩16%，IPO狂热破裂，\"还有50%下行\"该跑吗？", body_cn: "SpaceX（SPCX）今日单日暴跌16.43%、跌穿$155，上市以来的狂热彻底破裂。空头分析集中开火——\"估值高到astronomical\"、\"即便给足想象空间仍看50%下行\"，情绪泡沫被一次性戳破。太空\"影子标的\"同步遭殃，Rocket Lab（RKLB）跌6.48%。从上市暴涨、首个卖出评级、到今天的断崖式下杀，散户狂热只撑了不到两周。当\"史上最佳IPO\"开始还债，你会抄这波暴跌的底，还是认输离场？", title_en: "SpaceX Crashes 16% Post-IPO; Analysts See Another 50% Downside — Time to Exit?", body_en: "SpaceX (SPCX) plunged 16.43% Tuesday, breaching $155 and shattering post-IPO euphoria in a single session. Bears piled in, calling valuations \"astronomical\" and flagging 50% further downside even under optimistic assumptions. Sympathy selling hit Rocket Lab (RKLB), down 6.48%. From IPO surge to first sell rating to today's cliff-drop, retail mania lasted under two weeks. As the \"greatest IPO ever\" unwinds, do you buy this dip or cut your losses?" },
+  { ticker: "MU", title_cn: "美光周三盘后财报，新高之上，超级周期要兑现还是见光死？", body_cn: "美光（MU）本周三盘后发布财报，恰逢股价再创历史新高、苹果库克刚为内存涨价\"背书\"之际，这份财报成了AI存储超级周期的关键验证。市场最关注HBM与DRAM的涨价落地、毛利率改善幅度，以及下季指引能否继续上修。多头押注供需紧张兑现为超预期数字；空头则警惕\"抛物线新高+财报\"=典型的buy-the-rumor、sell-the-news——连日大涨已price in太多乐观。年内涨幅巨大的美光，财报前你会持股博beat，还是先落袋避雷？", title_en: "Micron Reports Wednesday Post-Close — Will the AI Memory Supercycle Deliver or Disappoint?", body_en: "Micron (MU) reports Wednesday after the bell, with shares at all-time highs and Apple's Tim Cook having just endorsed memory price increases — making this a pivotal test for the AI storage supercycle thesis. Markets are focused on HBM and DRAM pricing realization, gross margin expansion, and whether forward guidance continues to be revised higher. Bulls expect tight supply-demand dynamics to produce a blowout; bears warn a parabolic new high into earnings is a textbook buy-the-rumor, sell-the-news setup. With MU's massive year-to-date gains, do you hold through the print or take profits ahead of it?" },
+  { ticker: "GOOG", title_cn: "谷歌暴跌5%领跌软件，\"AI反噬软件\"恐慌来了吗？", body_cn: "Alphabet（GOOG）今日重挫5.08%，领跌一整片软件/通信服务板块——Oracle、Fastly、Rapid7、Braze、Teradata等SaaS与云软件集体跳水，微软也跌3.18%。市场正被\"AI正在吞噬软件\"的恐慌主导：当AI能直接生成应用、替代SaaS工具，传统软件的护城河被重新质疑（上周Accenture刚创下多年最差单日）。资金从软件/平台撤离、涌入内存与AI硬件，板块内部剧烈分化。谷歌这波是错杀的捡漏，还是软件估值重估的开始？", title_en: "Alphabet Drops 5%, Drags Software Sector — Is 'AI Eating Software' Panic Here?", body_en: "Alphabet (GOOG) tumbled 5.08%, leading a broad selloff across software and communication services — Oracle, Fastly, Rapid7, Braze, and Teradata all slid sharply, with Microsoft falling 3.18%. Markets are increasingly gripped by fears that AI is cannibalizing software: as AI directly generates applications and displaces SaaS tools, traditional software moats are being repriced — following Accenture's worst single-day performance in years last week. Capital is rotating out of software and platforms into memory and AI hardware. Is Google's selloff an overreaction and a buying opportunity, or the start of a broader software valuation reset?" },
+  { ticker: "QQQ", title_cn: "纳指看似没动，水下软硬大分化，你站哪一边？", body_cn: "表面看大盘风平浪静——纳指QQQ仅微跌0.25%；但水面下是一场史诗级的板块大轮动：一边是SpaceX崩盘16%、谷歌等软件/通信服务巨头被血洗，另一边是美光、SanDisk再创新高、超微暴涨16%，内存与AI硬件集体狂欢。资金正从\"软\"（软件/平台/估值故事）猛烈切向\"硬\"（内存/服务器/订单可见度），叠加美伊谈判推进、油价回落、债券收益率上行的宏观背景。指数的\"平静\"极具欺骗性。当软硬冰火两重天，你会跟着资金抱团AI硬件，还是逆向抄底被错杀的软件？", title_en: "Nasdaq Looks Flat, But an Epic Software-vs-Hardware Rotation Rages Beneath — Which Side Are You On?", body_en: "The surface looks calm — QQQ barely slipped 0.25% — but underneath lies an epic sector rotation: SpaceX cratered 16% and Google-led software names were hammered, while Micron, SanDisk hit new highs and Super Micro surged 16% as memory and AI hardware celebrated. Capital is aggressively shifting from \"soft\" (software, platforms, valuation stories) to \"hard\" (memory, servers, visible order books), against a macro backdrop of advancing U.S.-Iran talks, falling oil prices, and rising bond yields. The index's calm is deeply deceptive. With software and hardware moving in opposite directions, do you chase the AI hardware trade or contrarian-buy the battered software names?" },
+  { ticker: "SMCI", title_cn: "超微暴涨16%，新平台加速AI服务器积压，订单故事回来了？", body_cn: "超微电脑（SMCI）今日暴涨15.66%，催化来自其发布新平台、加速AI服务器积压订单的增长——在此前因约$390亿订单真实性遭质疑、股价腰斩之后，这份\"订单加速\"信号成了情绪修复的关键。AI服务器需求仍在，戴尔与HPE的强劲财报也佐证赛道景气，SMCI试图用新产品重建市场信任。但经历过信任危机的它，估值已不便宜。新平台能否真正兑现订单，你会赌这波超跌反弹，还是等业绩验证？", title_en: "Super Micro Surges 16% on New Platform, Accelerating AI Server Backlog — Is the Order Story Back?", body_en: "Super Micro Computer (SMCI) surged 15.66% after launching a new platform and reporting accelerating AI server backlog growth — a critical sentiment catalyst following a stock collapse tied to questions over the authenticity of its ~$39 billion order pipeline. Strong earnings from Dell and HPE further validate robust AI server demand, and SMCI is deploying new products to rebuild market credibility. But after a trust crisis, the stock is no longer cheap. Can the new platform genuinely convert backlog into revenue — do you bet on this oversold bounce, or wait for earnings confirmation?" },
 ];
 let current = 0;
 
