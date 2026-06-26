@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-25 AM</title>
+<title>Topics Review — 2026-06-26 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-25</div>
+      <div class="date-label">2026-06-26</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 4</div>
+      <div class="progress-text" id="progressText">1 / 3</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:25.0%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:33.3%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 4 topics uploaded
+    ✅ All done! 3 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,10 +165,9 @@
 </div>
 <script>
 const topics = [
-  { ticker: "MU", title_cn: "美光盘后飙15%，$1000亿长单锁定，超级周期坐实了？", body_cn: "美光（MU）财报炸裂、盘后暴涨约15%冲上$1,200：第三财季总收入创纪录$415亿，环比+74%、同比+346%，综合毛利率飙至84.9%（一度超过英伟达），连续第五季刷新收入纪录。更硬的是订单可见度——已签16份\"包销\"长单、锁定未来$1000亿最低保底收入，并提前落袋$180亿现金押金；数据中心业务季度收入超$250亿、年化破$1000亿。CEO直言AI已把内存抬升为\"战略资产\"，供应短缺将持续到2027年以后，而人形机器人单体内存需求是汽车的10倍，或开启下一个数十年超级周期。盘中还在跌、盘后被一份财报彻底点燃，你会追这波内存超级周期，还是嫌新高太贵？", title_en: "Micron Surges 15% After Hours; $100B Long-Term Orders Confirm Supercycle?", body_en: "Micron (MU) soared ~15% after hours toward $120 after a record-breaking Q3: revenue hit $41.5B, up 74% QoQ and 346% YoY, with gross margin surging to 84.9%—briefly surpassing Nvidia—marking a fifth consecutive record quarter. The company has secured 16 take-or-pay long-term contracts guaranteeing $100B in minimum revenue, with $18B in cash deposits already received; data center revenue exceeded $25B quarterly, annualizing above $100B. CEO declared AI has elevated memory to a 'strategic asset,' with supply shortages extending beyond 2027. Will you chase this memory supercycle, or is the new high too steep?" },
-  { ticker: "NVDA", title_cn: "英伟达跌破$200，看好本周反弹？", body_cn: "英伟达今日跌0.52%、失守$200整数关口，盘中随大盘走弱。但盘后风向骤变——美光创纪录财报坐实\"AI需求远超供给\"，点燃整个芯片板块盘后反攻、AI硬件单日市值回补数千亿。利好之外也有隐忧：OpenAI推出自研定制芯片\"Jalapeño\"，\"大客户去英伟达化\"的远期威胁再添一例。跌破$200又逢美光强财报，你会抄底龙头，还是担心客户自研掏空需求？", title_en: "Nvidia Breaks Below $200 — Bullish on a Rebound This Week?", body_en: "Nvidia fell 0.52% Tuesday, surrendering the key $200 level as it tracked broader market weakness intraday. The tide shifted after hours as Micron's record earnings confirmed 'AI demand vastly outstrips supply,' igniting a chipsector rally that recouped hundreds of billions in market cap. However, a new risk emerged: OpenAI unveiled its in-house custom chip 'Jalapeño,' adding another data point to the long-term threat of major customers reducing Nvidia dependency. With the stock below $200 and Micron's blowout results as a backdrop, will you buy the dip or worry about in-house chip development hollowing out demand?" },
-  { ticker: "MSFT", title_cn: "微软年内下跌24%，OpenAI自研芯片带来压力？", body_cn: "微软今日续跌2.27%。OpenAI正推出自研定制AI芯片\"Jalapeño\"，试图降低对外部算力的依赖。这对微软是把双刃剑：OpenAI若自建算力，微软Azure的独家绑定与AI变现路径都要被重新审视；叠加此前Copilot改按用量计费、\"AI越烧越贵\"的隐忧，市场对其AI回报的耐心正被消耗。当连OpenAI都要自己造芯片，微软的AI护城河还稳吗？这波连续回调，你会逢低吸纳，还是继续观望？", title_en: "Microsoft Down 24% YTD — Does OpenAI's Custom Chip Signal More Pressure?", body_en: "Microsoft fell another 2.27% Tuesday as OpenAI moves to launch its in-house custom AI chip 'Jalapeño,' aiming to reduce reliance on external compute. This cuts both ways for Microsoft: if OpenAI builds its own infrastructure, Azure's exclusive partnership and AI monetization strategy both face reassessment. Compounding concerns, Copilot's recent shift to usage-based pricing reinforces market anxiety over AI's ballooning costs and uncertain returns. With even OpenAI now building its own chips, is Microsoft's AI moat still intact — and will you buy this extended dip or stay on the sidelines?" },
-  { ticker: "GOLD", title_cn: "黄金跌破$4000创7个月新低，深度调整能抄底吗？", body_cn: "现货黄金6月24日盘中跌破$4,000/盎司整数大关、日内重挫2.8%，为2025年11月以来首次失守该关口；较今年1月的历史高点已累计回落近30%，技术上进入深度调整区间。压制来自三重宏观逆风：美元走强、美联储加息预期升温（沃什鹰派转向），以及美债收益率上行——在\"现金与债券更香\"的环境里，不生息的黄金持续失血。$4000是多空心理与技术的关键分水岭，一旦失守，下方支撑空间被打开。深跌近30%、失守$4000的黄金，你会逢低分批抄底，还是等加息预期见顶再动手？", title_en: "Gold Breaks Below $4,000 to 7-Month Low — Time to Buy the Deep Dip?", body_en: "Spot gold plunged through the key $4,000/oz level on June 24, dropping 2.8% intraday to its lowest since November 2024 and now down nearly 30% from its all-time high set in January — firmly in deep correction territory. Three macro headwinds are driving the selloff: a strengthening dollar, rising Fed rate-hike expectations following Waller's hawkish pivot, and climbing Treasury yields that make non-yielding gold less attractive. The $4,000 level marks a critical psychological and technical threshold; its breach opens meaningful downside. Down nearly 30% and below $4,000 — will you average in now, or wait for peak rate-hike expectations before pulling the trigger?" },
+  { ticker: "SNDK", title_cn: "SanDisk暴涨22%，美光财报最大赢家，超级周期还能追吗？", body_cn: "SanDisk（SNDK）今日暴涨21.97%、站上$2,335，成为美光创纪录财报的最大受益者——花旗直接点名SNDK为\"美光强财报第一受益股\"。MU确认的\"AI需求远超供给、短缺持续到2027年以后\"逻辑，正把整个内存板块推向超级周期：内存ETF（DRAM）涨9.95%、MU两倍多ETF（MUU）飙31%。AI数据中心与HBM的结构性紧缺让存储厂商坐进\"甜蜜点\"。但单日22%的抛物线也意味着交易越来越拥挤。内存超级周期最纯粹的弹性标的，你会追高，还是等回调？", title_en: "SanDisk Surges 22% as Micron's Blowout Earnings Ignite Memory Super-Cycle — Can You Still Chase It?", body_en: "SanDisk (SNDK) soared 21.97% to $2,335, crowned by Citi as the top beneficiary of Micron's record-breaking earnings. Micron's confirmation that AI demand far outstrips supply — with shortages extending beyond 2027 — is driving a sector-wide super-cycle: memory ETF (DRAM) gained 9.95% while the 2x MU ETF (MUU) surged 31%. With structural scarcity in AI data centers and HBM placing memory makers in the sweet spot, is SNDK's parabolic 22% single-day move still worth chasing, or do you wait for a pullback?" },
+  { ticker: "MSFT", title_cn: "微软续跌3%，云利润率承压+OpenAI推迟IPO，何时止跌？", body_cn: "微软（MSFT）今日再跌3.46%、连续多日走弱——市场担忧AI资本开支高企正压制Azure云业务的利润率前景，叠加昨日OpenAI自研芯片的冲击，今日又传OpenAI考虑把IPO推迟至2027年，给微软的AI变现时间表再添不确定性。作为AI capex最重、与OpenAI绑定最深的巨头，微软的盈利模型持续被重新审视。当\"AI烧钱\"压过\"AI变现\"叙事，微软这波连跌，你会逢低布局，还是等利润率拐点确认？", title_en: "Microsoft Slides Another 3% on Cloud Margin Pressure and Delayed OpenAI IPO — Where's the Floor?", body_en: "Microsoft (MSFT) fell another 3.46%, extending a multi-day losing streak as markets fret that surging AI capital expenditure is squeezing Azure's margin outlook. Yesterday's blow from OpenAI's in-house chip ambitions was compounded today by reports that OpenAI may delay its IPO to 2027, adding fresh uncertainty to Microsoft's AI monetization timeline. As the heaviest AI capex spender with the deepest OpenAI exposure, MSFT's earnings model faces continuous re-rating — with the 'AI spend' narrative overwhelming 'AI monetization,' do you buy the dip or wait for a margin inflection point?" },
+  { ticker: "AAPL", title_cn: "苹果暴跌6%，被内存涨价逼到加价，\"美光的蜜糖苹果的砒霜\"？", body_cn: "苹果（AAPL）今日重挫6.12%、失守$280，导火索是它宣布上调iPad与MacBook售价，并直接归因于\"AI热潮下芯片/内存成本飙升\"。这恰是内存超级周期的另一面——美光、SanDisk大涨的\"蜜糖\"，正变成下游硬件厂商的\"砒霜\"：成本被迫转嫁、需求恐受抑制、毛利率承压，\"Micron's gain is Apple's pain\"成了今日市场最贴切的注脚。当上游内存吃掉产业链利润，被加价的苹果是错杀的避险品，还是margin压力才刚开始？你会逢跌买苹果吗？", title_en: "Apple Crashes 6% as Memory Cost Surge Forces Price Hikes — Micron's Gain, Apple's Pain?", body_en: "Apple (AAPL) tumbled 6.12%, breaching $280, after the company raised iPad and MacBook prices, citing soaring chip and memory costs driven by the AI boom. This is the flip side of the memory super-cycle: the same tailwind lifting Micron and SanDisk is turning toxic for downstream hardware makers, forcing cost pass-throughs, threatening demand, and squeezing gross margins — making 'Micron's gain is Apple's pain' today's most fitting market narrative. With upstream memory consuming supply-chain profits, is AAPL an oversold defensive play or just the beginning of margin pressure — would you buy this dip?" },
 ];
 let current = 0;
 
