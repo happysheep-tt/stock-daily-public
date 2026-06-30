@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics Review — 2026-06-26 AM</title>
+<title>Topics Review — 2026-06-30 AM</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -97,21 +97,21 @@
 
   <div class="header">
     <div>
-      <div class="date-label">2026-06-26</div>
+      <div class="date-label">2026-06-30</div>
       <div class="session-badge">AM</div>
     </div>
     <div>
-      <div class="progress-text" id="progressText">1 / 3</div>
+      <div class="progress-text" id="progressText">1 / 6</div>
       <div class="progress-sub">topics</div>
     </div>
   </div>
 
   <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressBar" style="width:33.3%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:16.7%"></div>
   </div>
 
   <div id="doneBanner" class="done-banner">
-    ✅ All done! 3 topics uploaded
+    ✅ All done! 6 topics uploaded
     <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
   </div>
 
@@ -165,9 +165,12 @@
 </div>
 <script>
 const topics = [
-  { ticker: "SNDK", title_cn: "SanDisk暴涨22%，美光财报最大赢家，超级周期还能追吗？", body_cn: "SanDisk（SNDK）今日暴涨21.97%、站上$2,335，成为美光创纪录财报的最大受益者——花旗直接点名SNDK为\"美光强财报第一受益股\"。MU确认的\"AI需求远超供给、短缺持续到2027年以后\"逻辑，正把整个内存板块推向超级周期：内存ETF（DRAM）涨9.95%、MU两倍多ETF（MUU）飙31%。AI数据中心与HBM的结构性紧缺让存储厂商坐进\"甜蜜点\"。但单日22%的抛物线也意味着交易越来越拥挤。内存超级周期最纯粹的弹性标的，你会追高，还是等回调？", title_en: "SanDisk Surges 22% as Micron's Blowout Earnings Ignite Memory Super-Cycle — Can You Still Chase It?", body_en: "SanDisk (SNDK) soared 21.97% to $2,335, crowned by Citi as the top beneficiary of Micron's record-breaking earnings. Micron's confirmation that AI demand far outstrips supply — with shortages extending beyond 2027 — is driving a sector-wide super-cycle: memory ETF (DRAM) gained 9.95% while the 2x MU ETF (MUU) surged 31%. With structural scarcity in AI data centers and HBM placing memory makers in the sweet spot, is SNDK's parabolic 22% single-day move still worth chasing, or do you wait for a pullback?" },
-  { ticker: "MSFT", title_cn: "微软续跌3%，云利润率承压+OpenAI推迟IPO，何时止跌？", body_cn: "微软（MSFT）今日再跌3.46%、连续多日走弱——市场担忧AI资本开支高企正压制Azure云业务的利润率前景，叠加昨日OpenAI自研芯片的冲击，今日又传OpenAI考虑把IPO推迟至2027年，给微软的AI变现时间表再添不确定性。作为AI capex最重、与OpenAI绑定最深的巨头，微软的盈利模型持续被重新审视。当\"AI烧钱\"压过\"AI变现\"叙事，微软这波连跌，你会逢低布局，还是等利润率拐点确认？", title_en: "Microsoft Slides Another 3% on Cloud Margin Pressure and Delayed OpenAI IPO — Where's the Floor?", body_en: "Microsoft (MSFT) fell another 3.46%, extending a multi-day losing streak as markets fret that surging AI capital expenditure is squeezing Azure's margin outlook. Yesterday's blow from OpenAI's in-house chip ambitions was compounded today by reports that OpenAI may delay its IPO to 2027, adding fresh uncertainty to Microsoft's AI monetization timeline. As the heaviest AI capex spender with the deepest OpenAI exposure, MSFT's earnings model faces continuous re-rating — with the 'AI spend' narrative overwhelming 'AI monetization,' do you buy the dip or wait for a margin inflection point?" },
-  { ticker: "AAPL", title_cn: "苹果暴跌6%，被内存涨价逼到加价，\"美光的蜜糖苹果的砒霜\"？", body_cn: "苹果（AAPL）今日重挫6.12%、失守$280，导火索是它宣布上调iPad与MacBook售价，并直接归因于\"AI热潮下芯片/内存成本飙升\"。这恰是内存超级周期的另一面——美光、SanDisk大涨的\"蜜糖\"，正变成下游硬件厂商的\"砒霜\"：成本被迫转嫁、需求恐受抑制、毛利率承压，\"Micron's gain is Apple's pain\"成了今日市场最贴切的注脚。当上游内存吃掉产业链利润，被加价的苹果是错杀的避险品，还是margin压力才刚开始？你会逢跌买苹果吗？", title_en: "Apple Crashes 6% as Memory Cost Surge Forces Price Hikes — Micron's Gain, Apple's Pain?", body_en: "Apple (AAPL) tumbled 6.12%, breaching $280, after the company raised iPad and MacBook prices, citing soaring chip and memory costs driven by the AI boom. This is the flip side of the memory super-cycle: the same tailwind lifting Micron and SanDisk is turning toxic for downstream hardware makers, forcing cost pass-throughs, threatening demand, and squeezing gross margins — making 'Micron's gain is Apple's pain' today's most fitting market narrative. With upstream memory consuming supply-chain profits, is AAPL an oversold defensive play or just the beginning of margin pressure — would you buy this dip?" },
+  { ticker: "SPCX", title_cn: "SpaceX纳入纳指100，太空股集体起飞，上车窗口到了？", body_cn: "SpaceX今日大涨7.15%，将纳入纳斯达克100指数——被动资金即将强制配置，整个太空板块随之引爆：Rocket Lab暴涨15.93%、AST SpaceMobile狂飙21.44%。指数纳入抬高了SpaceX的估值锚，资金外溢点燃发射、卫星直连手机全产业链。但板块单日普涨20%+后短线情绪已极度亢奋，回调风险同步累积。这波太空热，你会追龙头SPCX，还是赌弹性更大的RKLB/ASTS？", title_en: "SpaceX Joins Nasdaq 100, Space Stocks Surge — Time to Buy?", body_en: "SpaceX surged 7.15% ahead of its Nasdaq 100 inclusion, triggering mandatory passive fund allocation and igniting the broader space sector: Rocket Lab soared 15.93% and AST SpaceMobile spiked 21.44%. The index addition raises SpaceX's valuation anchor, with capital spillover fueling the entire launch and satellite-to-mobile connectivity chain. After a 20%-plus single-day sector rally, however, short-term sentiment is overheated and pullback risk is building. Will you chase the lead ETF SPCX, or bet on higher-beta RKLB and ASTS?" },
+  { ticker: "TSLA", title_cn: "特斯拉领跑科技，risk-on行情还能追？", body_cn: "特斯拉今日大涨8.46%，领跑科技股，驱动来自美伊紧张缓和带动的全面risk-on行情与纳指走强，资金从避险资产回流高beta成长股。作为Mag7里弹性最大的标的，TSLA在风险偏好回归时往往放大反弹。但本轮上涨更多是β驱动而非特斯拉独立催化，缺乏robotaxi/交付等基本面新增量支撑，追高需警惕情绪退潮后的回吐。这波领涨，你会追，还是等回踩？", title_en: "Tesla Leads Tech Rally on Risk-On Surge — Still Worth Chasing?", body_en: "Tesla surged 8.46%, leading tech stocks as easing U.S.-Iran tensions sparked a broad risk-on rally, driving capital rotation from safe-haven assets back into high-beta growth names alongside a stronger Nasdaq. As the most elastic name in the Magnificent 7, TSLA typically amplifies rebounds when risk appetite returns. However, this move is primarily beta-driven rather than Tesla-specific, lacking fresh fundamental catalysts such as robotaxi updates or delivery beats — chasing at current levels risks sharp reversal once sentiment fades. Will you chase this breakout, or wait for a pullback?" },
+  { ticker: "AMD", title_cn: "半导体V型反弹，AMD领涨，崩盘后该抄底了吗？", body_cn: "AMD今日涨3.43%，带动半导体绝地反弹——三倍做多ETF（SOXL）暴涨9.70%、美光（MU）止跌回升，一举收复昨日内存反垄断诉讼引发的崩盘失地。市场情绪从恐慌切回risk-on，叠加\"AI算力需求未变\"的逻辑修复。但昨天刚因诉讼与抛物线见顶杀跌，今天的V型反弹究竟是趋势重启，还是超跌反抽？这波半导体反弹，你会当成上车机会，还是逢高减仓？", title_en: "Semiconductors Stage V-Shape Rebound, AMD Leads — Bottom or Trap?", body_en: "AMD rose 3.43%, pulling the semiconductor sector sharply off the lows — triple-leveraged ETF SOXL surged 9.70% and Micron (MU) recovered, fully recouping yesterday's selloff triggered by a memory antitrust lawsuit. Market sentiment flipped from panic back to risk-on, supported by the thesis that underlying AI compute demand remains intact. Yet with yesterday's parabolic breakdown and antitrust overhang still unresolved, the question is whether today's V-shape rebound marks a trend restart or a dead-cat bounce. Do you see this semiconductor rebound as a buying opportunity, or a chance to trim on strength?" },
+  { ticker: "GOOG", title_cn: "Alphabet首登道指，谷歌创新高，机构要重新定价？", body_cn: "Alphabet今日涨4.96%，催化是正式纳入道琼斯工业指数、迎来\"入道首秀\"，成为指数科技权重提升的标志性事件——被动资金配置需求叠加AI搜索/云业务的估值重估预期，推动股价走强。纳入道指既是认可，也意味着更高的机构关注度与持仓刚需。Mag7里GOOG估值仍相对不贵，这次\"入道\"会是新一轮重估的起点吗？你会在这个位置上车谷歌吗？", title_en: "Alphabet Joins the Dow, Google Hits Record High — Time for Repricing?", body_en: "Alphabet gained 4.96% as it officially joined the Dow Jones Industrial Average in a landmark event signaling elevated tech weighting in the index. Passive fund allocation demand, combined with expectations for valuation re-rating of its AI search and cloud businesses, drove the advance. Dow inclusion brings greater institutional visibility and structural buying necessity. Among the Magnificent 7, GOOG remains relatively attractively valued — could this milestone mark the starting point of a new re-rating cycle? Will you initiate a position in Google at this level?" },
+  { ticker: "SPY", title_cn: "美股最强季度收官，资金弃避险抢科技，下半年主线是？", body_cn: "标普500今日涨1.65%，与纳指、道指齐创新高，并锁定2020年以来最强单季表现。核心驱动是美伊谈判释放缓和信号、地缘风险降温，叠加降息预期升温，资金大举从黄金等避险资产回流风险资产。risk-on行情下高beta科技、太空、半导体集体起飞。但季末创新高后，估值与情绪均处高位，下半年能否延续？你认为这是新高起点，还是该落袋为安的位置？", title_en: "U.S. Stocks Close Best Quarter Since 2020 — What Leads in H2?", body_en: "The S&P 500 rose 1.65%, with the Nasdaq and Dow also hitting fresh records, locking in the strongest quarterly performance since 2020. The key catalyst was easing U.S.-Iran tensions reducing geopolitical risk, coupled with rising rate-cut expectations driving capital rotation out of gold and other safe havens into risk assets. High-beta tech, space, and semiconductor stocks surged in the risk-on environment. With valuations and sentiment both elevated following the quarter-end highs, can the rally extend into H2? Do you see this as the launchpad for new highs, or the right moment to take profits?" },
+  { ticker: "GLD", title_cn: "黄金跌破$4000，该抄底还是离场？", body_cn: "黄金今日续跌约1.4%，现货金价跌破$4000关口（GLD回落至$368附近），直接诱因是美伊缓和、risk-on行情下避险需求退潮、资金弃金抢险。多空分歧加剧：空头认为降息预期下实际收益率反弹、地缘降温将压制金价，$3,900是下一个技术支撑；多头则押注央行持续购金、去美元化长线逻辑未变，$4,000下方反而是中线抄底区。操作上，激进者可在$3,900附近分批试探、跌破止损，稳健者等企稳信号再进。黄金这轮回调，你会抄底，还是先离场观望？", title_en: "Gold Breaks Below $4,000 — Buy the Dip or Exit Now?", body_en: "Gold fell approximately 1.4%, with spot prices breaching the $4,000 level (GLD retreating to around $368), as U.S.-Iran de-escalation and a broad risk-on rotation drained safe-haven demand. Bears argue that rebounding real yields and cooling geopolitics will pressure prices further, with $3,900 as the next technical support; bulls maintain that persistent central bank buying and de-dollarization trends keep the long-term thesis intact, viewing sub-$4,000 as a medium-term accumulation zone. Tactically, aggressive traders may scale in near $3,900 with tight stops, while conservative investors should await stabilization signals before re-entering. Will you buy this gold dip, or step aside and wait?" },
 ];
 let current = 0;
 
