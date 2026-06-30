@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics Review — 2026-06-30 AM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .container { width: 100%; max-width: 780px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .date-label { font-size: 13px; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+  .session-badge { display: inline-block; background: #1e3a8a; color: #93c5fd; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-top: 5px; }
+  .progress-text { font-size: 28px; font-weight: 700; color: #f1f5f9; text-align: right; }
+  .progress-sub { font-size: 12px; color: #475569; text-align: right; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; transition: width 0.3s ease; }
+
+  /* Card */
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+  .ticker-tag { display: inline-block; background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 16px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: #1e3a8a;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 2px 12px;
+    border-radius: 20px;
+  }
+  .section-label.cn { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .section-label.en { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+
+  /* Field */
+  .field-block { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Content boxes */
+  .field-content {
+    font-size: 14px; line-height: 1.65; word-break: break-word;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px;
+  }
+  .field-content.cn-content {
+    color: #fcd34d; background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+  .field-content.en-content {
+    color: #e2e8f0; background: #0f172a;
+    border: 1px solid #334155;
+  }
+  .field-content.body-cn { font-size: 13px; color: #fbbf24; }
+  .field-content.body-en { font-size: 13px; color: #cbd5e1; }
+
+  /* Buttons */
+  .copy-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px; }
+  .copy-title-cn-btn { background: rgba(217,119,6,0.8); color: #fff; }
+  .copy-title-cn-btn:hover { background: #d97706; }
+  .copy-title-en-btn { background: #1d4ed8; color: #fff; }
+  .copy-title-en-btn:hover { background: #2563eb; }
+  .copy-body-cn-btn  { background: rgba(180,83,9,0.8); color: #fff; }
+  .copy-body-cn-btn:hover  { background: #b45309; }
+  .copy-body-en-btn  { background: #0f766e; color: #fff; }
+  .copy-body-en-btn:hover  { background: #0d9488; }
+  .copy-btn.copied { background: #166534 !important; color: #bbf7d0 !important; }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #334155; text-align: center; margin-bottom: 14px; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #64748b; }
+
+  /* Nav */
+  .nav { display: flex; gap: 12px; }
+  .nav-btn { flex: 1; padding: 13px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+  .nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; border-color: #475569; }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  /* Done */
+  .done-banner { display: none; text-align: center; padding: 28px; background: #14532d; border: 1px solid #166534; border-radius: 16px; color: #bbf7d0; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+  .done-sub { font-size: 13px; opacity: 0.8; margin-top: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="date-label">2026-06-30</div>
+      <div class="session-badge">AM</div>
+    </div>
+    <div>
+      <div class="progress-text" id="progressText">1 / 6</div>
+      <div class="progress-sub">topics</div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:16.7%"></div>
+  </div>
+
+  <div id="doneBanner" class="done-banner">
+    ✅ All done! 6 topics uploaded
+    <span class="done-sub">记得运行 python3 learn_from_edits.py 记录本次偏好</span>
+  </div>
+
+  <div id="card" class="card" >
+    <div class="ticker-tag" id="tickerTag"></div>
+
+    <!-- ── 中文区块 ── -->
+    <div class="section-divider"><span class="section-label cn">中文</span></div>
+
+    <div class="field-block">
+      <div class="field-label">标题</div>
+      <div class="field-content cn-content" id="titleCn"></div>
+      <button class="copy-btn copy-title-cn-btn" onclick="copyField('title_cn')">复制标题（中文）</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">正文</div>
+      <div class="field-content cn-content body-cn" id="bodyCn"></div>
+      <button class="copy-btn copy-body-cn-btn" onclick="copyField('body_cn')">复制正文（中文）</button>
+    </div>
+
+    <!-- ── 英文区块 ── -->
+    <div class="section-divider"><span class="section-label en">English</span></div>
+
+    <div class="field-block">
+      <div class="field-label">Title</div>
+      <div class="field-content en-content" id="titleEn"></div>
+      <button class="copy-btn copy-title-en-btn" onclick="copyField('title_en')">Copy Title (EN)</button>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="field-content en-content body-en" id="bodyEn"></div>
+      <button class="copy-btn copy-body-en-btn" onclick="copyField('body_en')">Copy Body (EN)</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>1</kbd> 复制标题(中) &nbsp;|&nbsp;
+    <kbd>2</kbd> 复制正文(中) &nbsp;|&nbsp;
+    <kbd>T</kbd> Copy Title(EN) &nbsp;|&nbsp;
+    <kbd>B</kbd> Copy Body(EN)
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" >Next →</button>
+  </div>
+
+</div>
+<script>
+const topics = [
+  { ticker: "SPCX", title_cn: "SpaceX纳入纳指100，太空股集体起飞，上车窗口到了？", body_cn: "SpaceX今日大涨7.15%，将纳入纳斯达克100指数——被动资金即将强制配置，整个太空板块随之引爆：Rocket Lab暴涨15.93%、AST SpaceMobile狂飙21.44%。指数纳入抬高了SpaceX的估值锚，资金外溢点燃发射、卫星直连手机全产业链。但板块单日普涨20%+后短线情绪已极度亢奋，回调风险同步累积。这波太空热，你会追龙头SPCX，还是赌弹性更大的RKLB/ASTS？", title_en: "SpaceX Joins Nasdaq 100, Space Stocks Surge — Time to Buy?", body_en: "SpaceX surged 7.15% ahead of its Nasdaq 100 inclusion, triggering mandatory passive fund allocation and igniting the broader space sector: Rocket Lab soared 15.93% and AST SpaceMobile spiked 21.44%. The index addition raises SpaceX's valuation anchor, with capital spillover fueling the entire launch and satellite-to-mobile connectivity chain. After a 20%-plus single-day sector rally, however, short-term sentiment is overheated and pullback risk is building. Will you chase the lead ETF SPCX, or bet on higher-beta RKLB and ASTS?" },
+  { ticker: "TSLA", title_cn: "特斯拉领跑科技，risk-on行情还能追？", body_cn: "特斯拉今日大涨8.46%，领跑科技股，驱动来自美伊紧张缓和带动的全面risk-on行情与纳指走强，资金从避险资产回流高beta成长股。作为Mag7里弹性最大的标的，TSLA在风险偏好回归时往往放大反弹。但本轮上涨更多是β驱动而非特斯拉独立催化，缺乏robotaxi/交付等基本面新增量支撑，追高需警惕情绪退潮后的回吐。这波领涨，你会追，还是等回踩？", title_en: "Tesla Leads Tech Rally on Risk-On Surge — Still Worth Chasing?", body_en: "Tesla surged 8.46%, leading tech stocks as easing U.S.-Iran tensions sparked a broad risk-on rally, driving capital rotation from safe-haven assets back into high-beta growth names alongside a stronger Nasdaq. As the most elastic name in the Magnificent 7, TSLA typically amplifies rebounds when risk appetite returns. However, this move is primarily beta-driven rather than Tesla-specific, lacking fresh fundamental catalysts such as robotaxi updates or delivery beats — chasing at current levels risks sharp reversal once sentiment fades. Will you chase this breakout, or wait for a pullback?" },
+  { ticker: "AMD", title_cn: "半导体V型反弹，AMD领涨，崩盘后该抄底了吗？", body_cn: "AMD今日涨3.43%，带动半导体绝地反弹——三倍做多ETF（SOXL）暴涨9.70%、美光（MU）止跌回升，一举收复昨日内存反垄断诉讼引发的崩盘失地。市场情绪从恐慌切回risk-on，叠加\"AI算力需求未变\"的逻辑修复。但昨天刚因诉讼与抛物线见顶杀跌，今天的V型反弹究竟是趋势重启，还是超跌反抽？这波半导体反弹，你会当成上车机会，还是逢高减仓？", title_en: "Semiconductors Stage V-Shape Rebound, AMD Leads — Bottom or Trap?", body_en: "AMD rose 3.43%, pulling the semiconductor sector sharply off the lows — triple-leveraged ETF SOXL surged 9.70% and Micron (MU) recovered, fully recouping yesterday's selloff triggered by a memory antitrust lawsuit. Market sentiment flipped from panic back to risk-on, supported by the thesis that underlying AI compute demand remains intact. Yet with yesterday's parabolic breakdown and antitrust overhang still unresolved, the question is whether today's V-shape rebound marks a trend restart or a dead-cat bounce. Do you see this semiconductor rebound as a buying opportunity, or a chance to trim on strength?" },
+  { ticker: "GOOG", title_cn: "Alphabet首登道指，谷歌创新高，机构要重新定价？", body_cn: "Alphabet今日涨4.96%，催化是正式纳入道琼斯工业指数、迎来\"入道首秀\"，成为指数科技权重提升的标志性事件——被动资金配置需求叠加AI搜索/云业务的估值重估预期，推动股价走强。纳入道指既是认可，也意味着更高的机构关注度与持仓刚需。Mag7里GOOG估值仍相对不贵，这次\"入道\"会是新一轮重估的起点吗？你会在这个位置上车谷歌吗？", title_en: "Alphabet Joins the Dow, Google Hits Record High — Time for Repricing?", body_en: "Alphabet gained 4.96% as it officially joined the Dow Jones Industrial Average in a landmark event signaling elevated tech weighting in the index. Passive fund allocation demand, combined with expectations for valuation re-rating of its AI search and cloud businesses, drove the advance. Dow inclusion brings greater institutional visibility and structural buying necessity. Among the Magnificent 7, GOOG remains relatively attractively valued — could this milestone mark the starting point of a new re-rating cycle? Will you initiate a position in Google at this level?" },
+  { ticker: "SPY", title_cn: "美股最强季度收官，资金弃避险抢科技，下半年主线是？", body_cn: "标普500今日涨1.65%，与纳指、道指齐创新高，并锁定2020年以来最强单季表现。核心驱动是美伊谈判释放缓和信号、地缘风险降温，叠加降息预期升温，资金大举从黄金等避险资产回流风险资产。risk-on行情下高beta科技、太空、半导体集体起飞。但季末创新高后，估值与情绪均处高位，下半年能否延续？你认为这是新高起点，还是该落袋为安的位置？", title_en: "U.S. Stocks Close Best Quarter Since 2020 — What Leads in H2?", body_en: "The S&P 500 rose 1.65%, with the Nasdaq and Dow also hitting fresh records, locking in the strongest quarterly performance since 2020. The key catalyst was easing U.S.-Iran tensions reducing geopolitical risk, coupled with rising rate-cut expectations driving capital rotation out of gold and other safe havens into risk assets. High-beta tech, space, and semiconductor stocks surged in the risk-on environment. With valuations and sentiment both elevated following the quarter-end highs, can the rally extend into H2? Do you see this as the launchpad for new highs, or the right moment to take profits?" },
+  { ticker: "GLD", title_cn: "黄金跌破$4000，该抄底还是离场？", body_cn: "黄金今日续跌约1.4%，现货金价跌破$4000关口（GLD回落至$368附近），直接诱因是美伊缓和、risk-on行情下避险需求退潮、资金弃金抢险。多空分歧加剧：空头认为降息预期下实际收益率反弹、地缘降温将压制金价，$3,900是下一个技术支撑；多头则押注央行持续购金、去美元化长线逻辑未变，$4,000下方反而是中线抄底区。操作上，激进者可在$3,900附近分批试探、跌破止损，稳健者等企稳信号再进。黄金这轮回调，你会抄底，还是先离场观望？", title_en: "Gold Breaks Below $4,000 — Buy the Dip or Exit Now?", body_en: "Gold fell approximately 1.4%, with spot prices breaching the $4,000 level (GLD retreating to around $368), as U.S.-Iran de-escalation and a broad risk-on rotation drained safe-haven demand. Bears argue that rebounding real yields and cooling geopolitics will pressure prices further, with $3,900 as the next technical support; bulls maintain that persistent central bank buying and de-dollarization trends keep the long-term thesis intact, viewing sub-$4,000 as a medium-term accumulation zone. Tactically, aggressive traders may scale in near $3,900 with tight stops, while conservative investors should await stabilization signals before re-entering. Will you buy this gold dip, or step aside and wait?" },
+];
+let current = 0;
+
+function render() {
+  if (!topics.length) return;
+  const t = topics[current];
+  document.getElementById('tickerTag').textContent = t.ticker || 'TOPIC';
+  document.getElementById('titleCn').textContent   = t.title_cn;
+  document.getElementById('bodyCn').textContent    = t.body_cn;
+  document.getElementById('titleEn').textContent   = t.title_en;
+  document.getElementById('bodyEn').textContent    = t.body_en;
+  document.getElementById('progressText').textContent = (current+1) + ' / ' + topics.length;
+  document.getElementById('progressBar').style.width  = ((current+1)/topics.length*100) + '%';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === topics.length - 1;
+  document.getElementById('doneBanner').style.display = 'none';
+  document.getElementById('card').style.display = '';
+  resetBtns();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < topics.length) { current = next; render(); }
+  else if (dir === 1 && current === topics.length - 1) {
+    document.getElementById('doneBanner').style.display = 'block';
+    document.getElementById('card').style.display = 'none';
+  }
+}
+
+function resetBtns() {
+  [
+    ['.copy-title-cn-btn', '复制标题（中文）'],
+    ['.copy-body-cn-btn',  '复制正文（中文）'],
+    ['.copy-title-en-btn', 'Copy Title (EN)'],
+    ['.copy-body-en-btn',  'Copy Body (EN)'],
+  ].forEach(([sel, label]) => {
+    const btn = document.querySelector(sel);
+    if (btn) { btn.textContent = label; btn.classList.remove('copied'); }
+  });
+}
+
+function copyField(field) {
+  const text = topics[current][field];
+  const labelMap = {
+    title_cn: '复制标题（中文）',
+    body_cn:  '复制正文（中文）',
+    title_en: 'Copy Title (EN)',
+    body_en:  'Copy Body (EN)',
+  };
+  const selMap = {
+    title_cn: '.copy-title-cn-btn',
+    body_cn:  '.copy-body-cn-btn',
+    title_en: '.copy-title-en-btn',
+    body_en:  '.copy-body-en-btn',
+  };
+  const btn = document.querySelector(selMap[field]);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = labelMap[field];
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')           navigate(-1);
+  if (e.key === 'ArrowRight')          navigate(1);
+  if (e.key === '1')                   copyField('title_cn');
+  if (e.key === '2')                   copyField('body_cn');
+  if (e.key.toLowerCase() === 't')     copyField('title_en');
+  if (e.key.toLowerCase() === 'b')     copyField('body_en');
+});
+
+render();
+</script>
+</body>
+</html>
